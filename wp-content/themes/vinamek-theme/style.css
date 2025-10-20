@@ -1,0 +1,15 @@
+/*
+Theme Name: Vinamek Theme
+Theme URI: https://vinamek.local
+Author: Vinamek
+Description: Custom multilingual WooCommerce theme built from static HTML.
+Version: 1.0
+Text Domain: vinamek
+*/
+body { font-family: Arial, Helvetica, sans-serif; margin:0; padding:0; }
+.container { width:90%; margin:0 auto; }
+.site-header, .site-footer { background:#f8f8f8; padding:20px 0; }
+.site-title { margin:0; }
+.product-list { display:flex; flex-wrap:wrap; gap:20px; }
+.product-item { width: calc(33.333% - 20px); box-sizing:border-box; }
+@media (max-width:800px){ .product-item{ width:100%; } }
