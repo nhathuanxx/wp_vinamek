@@ -1,310 +1,15 @@
 <?php
-/* Front page generated from index-3.html */
+/*
+* Template Name: Home Page
+*/
 get_header(); ?>
-
-<div class="page-wrapper">
- 	
-    <!-- Preloader -->
-    <div class="preloader"></div>
- 	
-    <!-- Main Header-->
-    <header class="main-header header-style-one">
-    
-    	<!--Header-Upper-->
-        <div class="header-upper">
-        	<div class="outer-container">
-            	<div class="clearfix">
-                	
-                	<div class="pull-left logo-box">
-                    	<div class="logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div>
-                    </div>
-                   	
-                   	<!-- Main Menu End-->
-					<div class="outer-box clearfix">
-						<ul class="option-list">
-							<li><span class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong> +00 00 0000 00</li>
-							<li><a href="contact.html"><span class="icon flaticon-calendar-2"></span><strong>Appointment</strong></a></li>
-						</ul>
-					</div>
-                   	   
-                    <div class="nav-outer clearfix">
-                    
-						<!-- Main Menu -->
-						<nav class="main-menu navbar-expand-md">
-							<div class="navbar-header">
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							</div>
-
-							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="#">Home</a>
-										<ul>
-											<li><a href="index-2.html">Home Page 01</a></li>
-											<li><a href="index-3.html">Home Page 02</a></li>
-											<li class="dropdown"><a href="#">Header Styles</a>
-												<ul>
-													<li><a href="index-2.html">Header Style 01</a></li>
-													<li><a href="index-3.html">Header Style 02</a></li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">About</a>
-										<ul>
-											<li><a href="about.html">About Us</a></li>
-											<li><a href="careers.html">Careers</a></li>
-											<li><a href="faq.html">Faq</a></li>
-											<li><a href="testimonials.html">Testimonial</a></li>
-											<li><a href="partners.html">Partners</a></li>
-											<li><a href="comming-soon.html">Comming Soon</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Services</a>
-										<ul>
-											<li><a href="services.html">Services</a></li>
-											<li><a href="services-single.html">Financial Planing</a></li>
-											<li><a href="savings-investments.html">Savings & Investments</a></li>
-											<li><a href="private-banking.html">Private Banking</a></li>
-											<li><a href="consumer-leasing.html">Consumer Leasing</a></li>
-											<li><a href="secured-transactions.html">Secured Transactions</a></li>
-											<li><a href="strategic-planing.html">Strategic Planing</a></li>
-											<li><a href="trade-stock.html">Trade & Stock</a></li>
-											<li><a href="insurance-consulting.html">Insurance Consulting</a></li>
-											<li><a href="retirment-planning.html">Retirment Planning</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Gallery</a>
-										<ul>
-											<li><a href="gallery.html">Gallery</a></li>
-											<li><a href="gallery-grid.html">Gallery Grid</a></li>
-											<li><a href="gallery-fullwidth.html">Gallery Fullwidth</a></li>
-											<li><a href="gallery-fullwidth-2.html">Gallery Fullwidth 2</a></li>
-											<li><a href="gallery-single.html">Gallery Single</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Shop</a>
-										<ul>
-											<li><a href="shop.html">Our Products</a></li>
-											<li><a href="shop-single.html">Product Single</a></li>
-											<li><a href="shopping-cart.html">Shopping Cart</a></li>
-											<li><a href="checkout.html">Checkout</a></li>
-											<li><a href="account.html">Account</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Blog</a>
-										<ul>
-											<li><a href="blog.html">Our Blog</a></li>
-											<li><a href="blog-list.html">Blog List</a></li>
-											<li><a href="blog-classic.html">Blog Classic</a></li>
-											<li><a href="blog-left-classic.html">Blog Left sidebar</a></li>
-											<li><a href="blog-single.html">Blog Single</a></li>
-											<li><a href="not-found.html">Not Found</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact us</a></li>
-								</ul>
-							</div>
-							
-							<div class="cart-box">
-								<a href="shop-single.html"><span class="icon flaticon-shopping-cart-of-checkered-design"></span><span class="number">0</span></a>
-							</div>
-							
-						</nav>
-						
-					</div>
-                   
-                </div>
-            </div>
-        </div>
-        <!--End Header Upper-->
-        
-		<!-- Hidden Nav Toggler -->
-		<div class="nav-toggler">
-		   <div class="nav-btn"><button class="hidden-bar-opener"><span class="icon flaticon-menu"></span></button></div>
-		</div>
-		<!-- / Hidden Nav Toggler -->
-		
-        <!--Sticky Header-->
-        <div class="sticky-header">
-        	<div class="auto-container clearfix">
-            	<!--Logo-->
-            	<div class="logo pull-left">
-                	<a href="index-2.html" class="img-responsive"><img src="images/logo-small.png" alt="" title=""></a>
-                </div>
-                
-                <!--Right Col-->
-                <div class="right-col pull-right">
-                	<!-- Main Menu -->
-                    <nav class="main-menu navbar-expand-md">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        
-                        <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
-                            <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="#">Home</a>
-									<ul>
-										<li><a href="index-2.html">Home Page 01</a></li>
-										<li><a href="index-3.html">Home Page 02</a></li>
-										<li class="dropdown"><a href="#">Header Styles</a>
-											<ul>
-												<li><a href="index-2.html">Header Style 01</a></li>
-												<li><a href="index-3.html">Header Style 02</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li class="dropdown"><a href="#">About</a>
-									<ul>
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="careers.html">Careers</a></li>
-										<li><a href="faq.html">Faq</a></li>
-										<li><a href="testimonials.html">Testimonial</a></li>
-										<li><a href="partners.html">Partners</a></li>
-										<li><a href="comming-soon.html">Comming Soon</a></li>
-									</ul>
-								</li>
-								<li class="dropdown"><a href="#">Services</a>
-									<ul>
-										<li><a href="services.html">Services</a></li>
-										<li><a href="services-single.html">Financial Planing</a></li>
-										<li><a href="savings-investments.html">Savings & Investments</a></li>
-										<li><a href="private-banking.html">Private Banking</a></li>
-										<li><a href="consumer-leasing.html">Consumer Leasing</a></li>
-										<li><a href="secured-transactions.html">Secured Transactions</a></li>
-										<li><a href="strategic-planing.html">Strategic Planing</a></li>
-										<li><a href="trade-stock.html">Trade & Stock</a></li>
-										<li><a href="insurance-consulting.html">Insurance Consulting</a></li>
-										<li><a href="retirment-planning.html">Retirment Planning</a></li>
-									</ul>
-								</li>
-								<li class="dropdown"><a href="#">Gallery</a>
-									<ul>
-										<li><a href="gallery.html">Gallery</a></li>
-										<li><a href="gallery-grid.html">Gallery Grid</a></li>
-										<li><a href="gallery-fullwidth.html">Gallery Fullwidth</a></li>
-										<li><a href="gallery-fullwidth-2.html">Gallery Fullwidth 2</a></li>
-										<li><a href="gallery-single.html">Gallery Single</a></li>
-									</ul>
-								</li>
-								<li class="dropdown"><a href="#">Shop</a>
-									<ul>
-										<li><a href="shop.html">Our Products</a></li>
-										<li><a href="shop-single.html">Product Single</a></li>
-										<li><a href="shopping-cart.html">Shopping Cart</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="account.html">Account</a></li>
-									</ul>
-								</li>
-								<li class="dropdown"><a href="#">Blog</a>
-									<ul>
-										<li><a href="blog.html">Our Blog</a></li>
-										<li><a href="blog-list.html">Blog List</a></li>
-										<li><a href="blog-classic.html">Blog Classic</a></li>
-										<li><a href="blog-left-classic.html">Blog Left sidebar</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-										<li><a href="not-found.html">Not Found</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.html">Contact us</a></li>
-                            </ul>
-                        </div>
-                    </nav><!-- Main Menu End-->
-                </div>
-                
-            </div>
-        </div>
-        <!--End Sticky Header-->
-    
-    </header>
-    <!--End Main Header -->
-
-	<!--FullScreen Menu-->
-	<div class="fullscreen-menu">
-		<!--Close Btn-->
-		<div class="close-menu"><span class="flaticon-cancel-1"></span></div>
-		
-		<div class="menu-outer-container">
-			<div class="menu-box">
-				<nav class="full-menu">
-					<ul class="navigation">
-						<li class="current dropdown"><a href="#">Home</a>
-							<ul>
-								<li><a href="index-2.html">Home Page 01</a></li>
-								<li><a href="index-3.html">Home Page 02</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#">About</a>
-							<ul>
-								<li><a href="about.html">About Us</a></li>
-								<li><a href="careers.html">Careers</a></li>
-								<li><a href="faq.html">Faq</a></li>
-								<li><a href="testimonials.html">Testimonial</a></li>
-								<li><a href="partners.html">Partners</a></li>
-								<li><a href="comming-soon.html">Comming Soon</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#">Services</a>
-							<ul>
-								<li><a href="services.html">Services</a></li>
-								<li><a href="services-single.html">Financial Planing</a></li>
-								<li><a href="savings-investments.html">Savings & Investments</a></li>
-								<li><a href="private-banking.html">Private Banking</a></li>
-								<li><a href="consumer-leasing.html">Consumer Leasing</a></li>
-								<li><a href="secured-transactions.html">Secured Transactions</a></li>
-								<li><a href="strategic-planing.html">Strategic Planing</a></li>
-								<li><a href="trade-stock.html">Trade & Stock</a></li>
-								<li><a href="insurance-consulting.html">Insurance Consulting</a></li>
-								<li><a href="retirment-planning.html">Retirment Planning</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#">Gallery</a>
-							<ul>
-								<li><a href="gallery.html">Gallery</a></li>
-								<li><a href="gallery-grid.html">Gallery Grid</a></li>
-								<li><a href="gallery-fullwidth.html">Gallery Fullwidth</a></li>
-								<li><a href="gallery-fullwidth-2.html">Gallery Fullwidth 2</a></li>
-								<li><a href="gallery-single.html">Gallery Single</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#">Shop</a>
-							<ul>
-								<li><a href="shop.html">Our Products</a></li>
-								<li><a href="shop-single.html">Product Single</a></li>
-								<li><a href="shopping-cart.html">Shopping Cart</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
-								<li><a href="account.html">Account</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#">Blog</a>
-							<ul>
-								<li><a href="blog.html">Our Blog</a></li>
-								<li><a href="blog-list.html">Blog List</a></li>
-								<li><a href="blog-classic.html">Blog Classic</a></li>
-								<li><a href="blog-left-classic.html">Blog Left sidebar</a></li>
-								<li><a href="blog-single.html">Blog Single</a></li>
-								<li><a href="not-found.html">Not Found</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact us</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div><!--End FullScreen Menu-->
 
     <!--Main Slider-->
     <section class="main-slider">
     	
         <div class="main-slider-carousel owl-carousel owl-theme">
             
-            <div class="slide" style="background-image:url(images/main-slider/image-1.jpg)">
+            <div class="slide" style="background-image:url(assets/images/main-slider/image-1.jpg)">
                 <div class="auto-container">
                 	<div class="content">
 						<div class="title">We Help</div>
@@ -317,7 +22,7 @@ get_header(); ?>
                 </div>
             </div>
             
-            <div class="slide" style="background-image:url(images/main-slider/image-2.jpg)">
+            <div class="slide" style="background-image:url(assets/images/main-slider/image-2.jpg)">
                 <div class="auto-container">
                 	<div class="content centered">
 						<div class="title">We Help</div>
@@ -330,7 +35,7 @@ get_header(); ?>
                 </div>
             </div>
             
-            <div class="slide" style="background-image:url(images/main-slider/image-3.jpg)">
+            <div class="slide" style="background-image:url(assets/images/main-slider/image-3.jpg)">
                 <div class="auto-container">
                 	<div class="content">
 						<div class="title">We Help</div>
@@ -414,7 +119,7 @@ get_header(); ?>
 							<span class="icon flaticon-return"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Capital Markets</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -428,7 +133,7 @@ get_header(); ?>
 							<span class="icon flaticon-prize"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Insurance</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -442,7 +147,7 @@ get_header(); ?>
 							<span class="icon flaticon-molecule"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Blackchain</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -456,7 +161,7 @@ get_header(); ?>
 							<span class="icon flaticon-credit-card-1"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Technology Advisory</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -470,7 +175,7 @@ get_header(); ?>
 							<span class="icon flaticon-management"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Finance & Risk</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -484,7 +189,7 @@ get_header(); ?>
 							<span class="icon flaticon-monitor"></span>
 						</div>
 						<div class="content">
-							<div class="image-layer" style="background-image: url(images/resource/service-1.jpg)"></div>
+							<div class="image-layer" style="background-image: url(assets/images/resource/service-1.jpg)"></div>
 							<h5><a href="#">Investment Planning</a></h5>
 							<div class="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</div>
 						</div>
@@ -522,7 +227,7 @@ get_header(); ?>
 				<div class="service-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image-box">
-							<img src="images/resource/services-1.jpg" alt="" />
+							<img src="assets/images/resource/services-1.jpg" alt="" />
 							<div class="caption">SALES EFFECTIVENESS SYSTEM</div>
 							<div class="overlay-box">
 								<h6>SALES EFFECTIVENESS SYSTEM</h6>
@@ -537,7 +242,7 @@ get_header(); ?>
 				<div class="service-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image-box">
-							<img src="images/resource/services-2.jpg" alt="" />
+							<img src="assets/images/resource/services-2.jpg" alt="" />
 							<div class="caption">FOCUS ON CUSTOMIZED SALES</div>
 							<div class="overlay-box">
 								<h6>FOCUS ON CUSTOMIZED SALES</h6>
@@ -552,7 +257,7 @@ get_header(); ?>
 				<div class="service-block-three col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image-box">
-							<img src="images/resource/services-3.jpg" alt="" />
+							<img src="assets/images/resource/services-3.jpg" alt="" />
 							<div class="caption">CONITINUOUS LEARNING APPROACH </div>
 							<div class="overlay-box">
 								<h6>CONITINUOUS LEARNING APPROACH </h6>
@@ -898,7 +603,7 @@ get_header(); ?>
 								<div class="inner-box">
 									<div class="author-info">
 										<div class="image">
-											<img src="images/resource/author-1.jpg" alt="" />
+											<img src="assets/images/resource/author-1.jpg" alt="" />
 										</div>
 										<h6>JOHN ABRAHAM</h6>
 										<div class="designation">Morris, CEO</div>
@@ -912,7 +617,7 @@ get_header(); ?>
 								<div class="inner-box">
 									<div class="author-info">
 										<div class="image">
-											<img src="images/resource/author-1.jpg" alt="" />
+											<img src="assets/images/resource/author-1.jpg" alt="" />
 										</div>
 										<h6>JOHN ABRAHAM</h6>
 										<div class="designation">Morris, CEO</div>
@@ -926,7 +631,7 @@ get_header(); ?>
 								<div class="inner-box">
 									<div class="author-info">
 										<div class="image">
-											<img src="images/resource/author-1.jpg" alt="" />
+											<img src="assets/images/resource/author-1.jpg" alt="" />
 										</div>
 										<h6>JOHN ABRAHAM</h6>
 										<div class="designation">Morris, CEO</div>
@@ -947,7 +652,7 @@ get_header(); ?>
 							<h2>Business Growth</h2>
 						</div>
 						<div class="graph-image">
-							<img src="images/resource/graph.png" alt="" />
+							<img src="assets/images/resource/graph.png" alt="" />
 						</div>
 					</div>
 				</div>
@@ -978,193 +683,6 @@ get_header(); ?>
     </section>
 	<!--End Subscribe Style One-->
 	
-   <!--Main Footer-->
-   <div class="bottom-parallax">
-    <footer class="main-footer">
-			<!--Widgets Section-->
-			<div class="auto-container">
-
-				<div class="widgets-section">
-					<div class="row clearfix">
-
-						<!--Footer Column-->
-						<div class="footer-column col-lg-4 col-md-6 col-sm-12">
-							<!--About Widget-->
-							<div class="footer-widget logo-widget">
-								<div class="logo">
-									<a href="index-2.html"><img src="images/footer-logo.png" alt="" /></a>
-								</div>
-								<div class="text">Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. </div>
-								<a href="#" class="theme-btn btn-style-two">Read More</a>
-							</div>
-						</div>
-
-						<!--Footer Column-->
-						<div class="footer-column col-lg-4 col-md-6 col-sm-12">
-							<!--About Widget-->
-							<div class="footer-widget links-widget">
-								<h5>Usefull Links</h5>
-								<div class="row clearfix">
-									<ul class="link-list col-md-6 col-sm-6 col-xs-12">
-										<li><a href="#">Business Growth</a></li>
-										<li><a href="#">Sustainability</a></li>
-										<li><a href="#">Performance</a></li>
-										<li><a href="#">Customer Insights</a></li>
-										<li><a href="#">Organization</a></li>
-										<li><a href="#">Advanced Analytics</a></li>
-									</ul>
-									<ul class="link-list col-md-6 col-sm-6 col-xs-12">
-										<li><a href="#">About Industry</a></li>
-										<li><a href="#">Customer FAQ’s</a></li>
-										<li><a href="#">Testimonials</a></li>
-										<li><a href="#">Free Consultation</a></li>
-										<li><a href="#">Meet Our Team</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>  
-
-						<!--Footer Column-->
-						<div class="footer-column col-lg-4 col-md-6 col-sm-12">
-							<!--About Widget-->
-							<div class="footer-widget news-widget">
-								<h5>Latest News</h5>
-
-								<div class="news-widget-block">
-									<div class="inner">
-										<div class="icon flaticon-world"></div>
-										<div class="post-date">February 14, 2019</div>
-										<div class="text"><a href="#">Seminar for improve  business profit & loss</a></div>
-									</div>
-								</div>
-
-								<div class="news-widget-block">
-									<div class="inner">
-										<div class="icon flaticon-graduation-cap"></div>
-										<div class="post-date">January 21, 2019</div>
-										<div class="text"><a href="#">Experts Openion for save money for your future.</a></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<!--Footer Info Section-->
-				<div class="footer-info-section">
-					<div class="row clearfix">
-
-						<!--Info Block-->
-						<div class="info-block col-md-4 col-sm-6 col-xs-12">
-							<div class="inner">
-								<div class="icon flaticon-pin"></div>
-								<h6>Address</h6>
-								<div class="text">185, Industry Street, Los Angeles, USA.</div>
-							</div>
-						</div>
-
-						<!--Info Block-->
-						<div class="info-block col-md-4 col-sm-6 col-xs-12">
-							<div class="inner">
-								<div class="icon flaticon-technology-1"></div>
-								<h6>Call Us On</h6>
-								<div class="text">Front Desk: +000-000-0000 & 00</div>
-							</div>
-						</div>
-
-						<!--Info Block-->
-						<div class="info-block col-md-4 col-sm-6 col-xs-12">
-							<div class="inner">
-								<div class="icon flaticon-web"></div>
-								<h6>Email at</h6>
-								<div class="text">Support-team@.com</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-
-			<!--Footer Bottom-->
-			<div class="footer-bottom">
-				<div class="auto-container">
-					<div class="row clearfix">
-						<div class="column col-md-6 col-sm-12 col-xs-12">
-							<div class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></div>
-						</div>
-						<div class="nav-column col-md-6 col-sm-12 col-xs-12">
-							<ul class="footer-nav">
-								<li><a href="#">Legal</a></li>
-								<li><a href="#">Sitemap</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Terms & Condition</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End Footer Bottom-->
-
-		</footer>
-	</div>
-    
-</div>
-<!--End pagewrapper-->
-
-<!--Scroll to top-->
-<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
-
-<!-- Color Palate / Color Switcher -->
-<div class="color-palate">
-    <div class="color-trigger">
-        <i class="fa fa-gears"></i>
-    </div>
-    <div class="color-palate-head">
-        <h6>Choose Your Color</h6>
-    </div>
-    <div class="various-color clearfix">
-        <div class="colors-list">
-            <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
-            <span class="palate green-color" data-theme-file="css/color-themes/green-theme.css"></span>
-            <span class="palate blue-color" data-theme-file="css/color-themes/blue-theme.css"></span>
-            <span class="palate orange-color" data-theme-file="css/color-themes/orange-theme.css"></span>
-            <span class="palate purple-color" data-theme-file="css/color-themes/purple-theme.css"></span>
-            <span class="palate teal-color" data-theme-file="css/color-themes/teal-theme.css"></span>
-            <span class="palate brown-color" data-theme-file="css/color-themes/brown-theme.css"></span>
-            <span class="palate redd-color" data-theme-file="css/color-themes/redd-color.css"></span>
-			<span class="palate olive-color" data-theme-file="css/color-themes/olive-theme.css"></span>
-            <span class="palate yellow-color" data-theme-file="css/color-themes/yellow-theme.css"></span>
-            <span class="palate pink-color" data-theme-file="css/color-themes/pink-theme.css"></span>
-            <span class="palate hotpink-color" data-theme-file="css/color-themes/hotpink-color.css"></span>
-        </div>
-    </div>
-	
-	<ul class="box-version option-box"> <li class="box">Boxed</li> <li>Full width</li></ul>
-	<ul class="rtl-version option-box"> <li class="rtl">RTL Version</li> <li>LTR Version</li> </ul>
-	
-    <a href="#" class="purchase-btn">Purchase now $17</a>
-    
-    <div class="palate-foo">
-        <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
-    </div>
-
-</div>
-
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/popper.min.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/bootstrap.min.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery.fancybox.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/appear.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/owl.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/wow.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/slick.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/isotope.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery-ui.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/script.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/color-settings.js"></script>
+   
 
 <?php get_footer(); ?>
