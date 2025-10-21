@@ -9,20 +9,21 @@ get_header(); ?>
     	
         <div class="main-slider-carousel owl-carousel owl-theme">
             
-            <div class="slide" style="background-image:url(assets/images/main-slider/image-1.jpg)">
-                <div class="auto-container">
-                	<div class="content">
-						<div class="title">We Help</div>
-						<h1>Growing Business</h1>
-						<div class="text">We help you managing asset, provide financial advise. Leave money issue with us and focus on your core business.</div>
-                    	<div class="link-box">
-							<a href="about.html" class="theme-btn btn-style-one">Learn More</a> <a href="contact.html" class="theme-btn btn-style-two">Contact Us</a>
-						</div>
-                    </div>
-                </div>
+          <div class="slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/main-slider/image-1.jpg')">
+    <div class="auto-container">
+        <div class="content">
+            <div class="title">We Help</div>
+            <h1>Growing Business</h1>
+            <div class="text">We help you managing asset, provide financial advise. Leave money issue with us and focus on your core business.</div>
+            <div class="link-box">
+                <a href="<?php echo esc_url(home_url('/about')); ?>" class="theme-btn btn-style-one">Learn More</a> 
+                <a href="<?php echo esc_url(home_url('/contact')); ?>" class="theme-btn btn-style-two">Contact Us</a>
             </div>
+        </div>
+    </div>
+</div>
             
-            <div class="slide" style="background-image:url(assets/images/main-slider/image-2.jpg)">
+            <div class="slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/main-slider/image-2.jpg');">
                 <div class="auto-container">
                 	<div class="content centered">
 						<div class="title">We Help</div>
@@ -35,7 +36,7 @@ get_header(); ?>
                 </div>
             </div>
             
-            <div class="slide" style="background-image:url(assets/images/main-slider/image-3.jpg)">
+            <div class="slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/images/main-slider/image-3.jpg');">
                 <div class="auto-container">
                 	<div class="content">
 						<div class="title">We Help</div>
