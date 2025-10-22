@@ -152,52 +152,67 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
   }
 }
 if (!class_exists('WP_Fullscreen_Navwalker')) {
-  class WP_Fullscreen_Navwalker extends Walker_Nav_Menu {
+  class WP_Fullscreen_Navwalker extends Walker_Nav_Menu
+  {
 
     // Start level
-    public function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat("\t", $depth);
-        $classes = 'sub-menu';
-        if ($depth === 0) $classes = ''; // cấp 1, bỏ class nếu muốn
-        $output .= "\n$indent<ul class=\"$classes\">\n";
+    public function start_lvl(&$output, $depth = 0, $args = array())
+    {
+      $indent = str_repeat("\t", $depth);
+      $classes = 'sub-menu';
+      if ($depth === 0) $classes = ''; // cấp 1, bỏ class nếu muốn
+      $output .= "\n$indent<ul class=\"$classes\">\n";
     }
 
     // Start element
-    public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-        $indent = ($depth) ? str_repeat("\t", $depth) : '';
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+    {
+      $indent = ($depth) ? str_repeat("\t", $depth) : '';
+      $classes = empty($item->classes) ? array() : (array) $item->classes;
 
-        // Nếu có submenu, thêm class dropdown
-        if (in_array('menu-item-has-children', $classes)) {
-            $classes[] = 'dropdown';
+      // Nếu có submenu, thêm class dropdown
+      if (in_array('menu-item-has-children', $classes)) {
+        $classes[] = 'dropdown';
+      }
+
+      $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
+      $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+      $output .= $indent . '<li' . $class_names . '>';
+
+      $atts = array();
+      $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
+      $atts['target'] = !empty($item->target) ? $item->target : '';
+      $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
+      $atts['href']   = !empty($item->url) ? $item->url : '';
+
+      $attributes = '';
+      foreach ($atts as $attr => $value) {
+        if (!empty($value)) {
+          $value = esc_attr($value);
+          $attributes .= " $attr=\"$value\"";
         }
+      }
 
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
-        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+      $title = apply_filters('the_title', $item->title, $item->ID);
 
-        $output .= $indent . '<li' . $class_names . '>';
-
-        $atts = array();
-        $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = !empty($item->target) ? $item->target : '';
-        $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
-        $atts['href']   = !empty($item->url) ? $item->url : '';
-
-        $attributes = '';
-        foreach ($atts as $attr => $value) {
-            if (!empty($value)) {
-                $value = esc_attr($value);
-                $attributes .= " $attr=\"$value\"";
-            }
-        }
-
-        $title = apply_filters('the_title', $item->title, $item->ID);
-
-        $output .= '<a'. $attributes . '>' . $title . '</a>';
+      $output .= '<a' . $attributes . '>' . $title . '</a>';
     }
 
-    public function end_el( &$output, $item, $depth = 0, $args = array() ) {
-        $output .= "</li>\n";
+    public function end_el(&$output, $item, $depth = 0, $args = array())
+    {
+      $output .= "</li>\n";
     }
+  }
 }
+
+if (function_exists('acf_add_options_page')) {
+
+  acf_add_options_page(array(
+    'page_title'   => 'Theme General Settings (' . pll_current_language('slug') . ')',
+    'menu_title'  => 'Theme Settings(' . pll_current_language('slug') . ')',
+    'menu_slug'   => 'theme-general-settings-' . pll_current_language('slug'),
+    'capability'  => 'edit_posts',
+    'redirect'    => false
+  ));
 }

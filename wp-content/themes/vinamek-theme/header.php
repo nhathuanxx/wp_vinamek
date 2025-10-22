@@ -30,10 +30,15 @@
               <div class="logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
                   <?php
-                  if (function_exists('the_custom_logo') && has_custom_logo()) {
-                    the_custom_logo();
+                  // Lấy logo từ ACF Options Page
+                  $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
+
+                  if ($acf_logo) {
+                    // Image Array, chiều cao 60px
+                    echo '<img src="' . esc_url($acf_logo['url']) . '" alt="' . esc_attr($acf_logo['alt']) . '" class="site-logo">';
                   } else {
-                    echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/logo.png') . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                    // Fallback: logo mặc định trong theme
+                    echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/vinamek/vinamek-logo-name1.png') . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="site-logo">';
                   }
                   ?>
                 </a>
@@ -42,9 +47,68 @@
 
             <!-- Option list -->
             <div class="outer-box clearfix">
-              <ul class="option-list">
-                <li><span class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong> +00 00 0000 00</li>
-                <li><a href="<?php echo esc_url(home_url('/contact')); ?>"><span class="icon flaticon-calendar-2"></span><strong>Appointment</strong></a></li>
+              <ul class="option-list" style="margin-bottom:0">
+                <li><span class="icon flaticon-phone-symbol-of-an-auricular-inside-a-circle"></span><strong>Tel:</strong> <?php
+                                                                                                                          // Lấy số điện thoại từ ACF Options Page
+                                                                                                                          $so_dien_thoai = get_field('so_dien_thoai', 'option');
+
+                                                                                                                          if ($so_dien_thoai) {
+                                                                                                                            // Loại bỏ khoảng trắng hoặc ký tự không cần thiết để dùng tel:
+                                                                                                                            $tel_number = preg_replace('/\D+/', '', $so_dien_thoai);
+                                                                                                                            echo '<a href="tel:' . esc_attr($tel_number) . '">' . esc_html($so_dien_thoai) . '</a>';
+                                                                                                                          } else {
+                                                                                                                            // Fallback nếu chưa có số
+                                                                                                                            echo '+00 00 0000 00';
+                                                                                                                          }
+                                                                                                                          ?></li>
+                <li><?php
+                    // Lấy số điện thoại từ ACF Options Page
+                    $so_dien_thoai = get_field('so_dien_thoai_2', 'option');
+
+                    if ($so_dien_thoai) {
+                      // Loại bỏ khoảng trắng hoặc ký tự không cần thiết để dùng tel:
+                      $tel_number = preg_replace('/\D+/', '', $so_dien_thoai);
+                      echo '<a href="tel:' . esc_attr($tel_number) . '">' . esc_html($so_dien_thoai) . '</a>';
+                    } else {
+                      // Fallback nếu chưa có số
+                      echo '+00 00 0000 00';
+                    }
+                    ?></li>
+                <li>
+                  <?php
+                  $translations = pll_the_languages(array(
+                    'raw' => 1,
+                    'hide_if_no_translation' => 0, // hiển thị tất cả ngôn ngữ
+                  ));
+
+                  if (!empty($translations)) :
+                    $current_lang = pll_current_language('slug');
+                    $url_flags = get_template_directory_uri() . '/assets/images/vinamek/';
+                  ?>
+                    <div class="header-lang-content">
+
+                      <!-- Hiển thị cờ ngôn ngữ hiện tại -->
+                      <div class="lang-img-container">
+                        <?php
+                        if (isset($translations[$current_lang])) {
+                          echo '<img class="lang-img" src="' . esc_url($url_flags . 'flag-' . $current_lang . '.png') . '" alt="' . esc_attr($current_lang) . '">';
+                        }
+                        ?>
+                      </div>
+
+                      <select class="select-circle" onchange="if(this.value){window.location=this.value;}">
+                        <?php foreach ($translations as $lang => $translation) : ?>
+                          <option
+                            value="<?php echo esc_url($translation['url']); ?>"
+                            <?php selected($translation['current_lang'], true); ?>>
+                            <?php echo esc_html($translation['name']); ?>
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+
+                    </div>
+                  <?php endif; ?>
+                </li>
               </ul>
             </div>
 
@@ -75,14 +139,14 @@
                 </div>
 
                 <!-- Cart Box -->
-                <?php if (class_exists('WooCommerce')) : ?>
+                <!-- <?php if (class_exists('WooCommerce')) : ?>
                   <div class="cart-box">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                       <span class="icon flaticon-shopping-cart-of-checkered-design"></span>
                       <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                     </a>
                   </div>
-                <?php endif; ?>
+                <?php endif; ?> -->
 
               </nav>
             </div><!-- /.nav-outer -->
@@ -105,8 +169,18 @@
           <!-- Logo -->
           <div class="logo pull-left">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="img-responsive">
-              <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-small.png'); ?>" alt="<?php bloginfo('name'); ?>">
-            </a>
+              <?php
+              // Lấy logo từ ACF Options Page
+              $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
+
+              if ($acf_logo) {
+                // Image Array, chiều cao 60px
+                echo '<img src="' . esc_url($acf_logo['url']) . '" alt="' . esc_attr($acf_logo['alt']) . '" class="site-logo">';
+              } else {
+                // Fallback: logo mặc định trong theme
+                echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/vinamek/vinamek-logo-name1.png') . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="site-logo">';
+              }
+              ?> </a>
           </div>
 
           <!-- Right Col -->
