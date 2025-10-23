@@ -1,4 +1,4 @@
-</main>
+<?php $lang = pll_current_language('slug'); ?>
 <footer class="main-footer">
   <!--Widgets Section-->
   <div class="auto-container">
@@ -11,7 +11,18 @@
           <!--About Widget-->
           <div class="footer-widget logo-widget">
             <div class="logo">
-              <a href="index-2.html"><img src="images/footer-logo.png" alt="" /></a>
+              <a href="<?php echo esc_url(home_url()); ?>"> <?php
+                                                            // Lấy logo từ ACF Options Page
+                                                            $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
+
+                                                            if ($acf_logo) {
+                                                              // Image Array, chiều cao 60px
+                                                              echo '<img src="' . esc_url($acf_logo['url']) . '" alt="' . esc_attr($acf_logo['alt']) . '" class="site-logo">';
+                                                            } else {
+                                                              // Fallback: logo mặc định trong theme
+                                                              echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/vinamek/vinamek-logo-name1.png') . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="site-logo">';
+                                                            }
+                                                            ?></a>
             </div>
             <div class="text">Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. </div>
             <a href="#" class="theme-btn btn-style-two">Read More</a>
@@ -79,8 +90,13 @@
         <div class="info-block col-md-4 col-sm-6 col-xs-12">
           <div class="inner">
             <div class="icon flaticon-pin"></div>
-            <h6>Address</h6>
-            <div class="text">185, Industry Street, Los Angeles, USA.</div>
+            <h6><?php echo ($lang === 'vi') ? 'Địa chỉ' : 'Address'; ?>
+            </h6>
+            <div class="text"><?php
+                              $dia_chi_chi_tiet = get_field('dia_chi_chi_tiet', 'option');
+                              if ($dia_chi_chi_tiet): ?>
+                <?php echo esc_html($dia_chi_chi_tiet); ?>
+              <?php endif; ?></div>
           </div>
         </div>
 
@@ -88,8 +104,27 @@
         <div class="info-block col-md-4 col-sm-6 col-xs-12">
           <div class="inner">
             <div class="icon flaticon-technology-1"></div>
-            <h6>Call Us On</h6>
-            <div class="text">Front Desk: +000-000-0000 & 00</div>
+            <h6><?php echo ($lang === 'vi') ? 'Liên hệ' : 'Contact'; ?></h6>
+            <div class="text">Hotline: <?php
+                                        $so_dien_thoai = get_field('so_dien_thoai', 'option');
+
+                                        if ($so_dien_thoai) {
+                                          $tel_number = preg_replace('/\D+/', '', $so_dien_thoai);
+                                          echo '<a href="tel:' . esc_attr($tel_number) . '" class="footer-phone-number">' . esc_html($so_dien_thoai) . '</a>';
+                                        } else {
+                                          echo '+00 00 0000 00';
+                                        }
+                                        ?></div>
+            <div class="text">Zalo: <?php
+                                    $so_dien_thoai_2 = get_field('so_dien_thoai_2', 'option');
+
+                                    if ($so_dien_thoai_2) {
+                                      $tel_number = preg_replace('/\D+/', '', $so_dien_thoai_2);
+                                      echo '<a href="https://zalo.me/' . esc_attr($tel_number) . '" class="footer-phone-number">' . esc_html($so_dien_thoai_2) . '</a>';
+                                    } else {
+                                      echo '+00 00 0000 00';
+                                    }
+                                    ?></div>
           </div>
         </div>
 
@@ -98,7 +133,16 @@
           <div class="inner">
             <div class="icon flaticon-web"></div>
             <h6>Email at</h6>
-            <div class="text">Support-team@.com</div>
+            <div class="text"><?php
+                              $email = get_field('email', 'option');
+                              if ($email): ?>
+
+                <a href="mailto:<?php echo esc_attr($email); ?>" style="all: unset; cursor: pointer;">
+                  <?php echo esc_html($email); ?>
+                </a>
+
+              <?php endif; ?>
+            </div>
           </div>
         </div>
 
@@ -125,58 +169,9 @@
       </div>
     </div>
   </div>
-  <!--End Footer Bottom-->
-
 </footer>
 
-
-
-<!--End pagewrapper-->
-
-<!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
-
-<!-- Color Palate / Color Switcher -->
-<!-- <div class="color-palate">
-  <div class="color-trigger">
-    <i class="fa fa-gears"></i>
-  </div>
-  <div class="color-palate-head">
-    <h6>Choose Your Color</h6>
-  </div>
-  <div class="various-color clearfix">
-    <div class="colors-list">
-      <span class="palate default-color active" data-theme-file="css/color-themes/default-theme.css"></span>
-      <span class="palate green-color" data-theme-file="css/color-themes/green-theme.css"></span>
-      <span class="palate blue-color" data-theme-file="css/color-themes/blue-theme.css"></span>
-      <span class="palate orange-color" data-theme-file="css/color-themes/orange-theme.css"></span>
-      <span class="palate purple-color" data-theme-file="css/color-themes/purple-theme.css"></span>
-      <span class="palate teal-color" data-theme-file="css/color-themes/teal-theme.css"></span>
-      <span class="palate brown-color" data-theme-file="css/color-themes/brown-theme.css"></span>
-      <span class="palate redd-color" data-theme-file="css/color-themes/redd-color.css"></span>
-      <span class="palate olive-color" data-theme-file="css/color-themes/olive-theme.css"></span>
-      <span class="palate yellow-color" data-theme-file="css/color-themes/yellow-theme.css"></span>
-      <span class="palate pink-color" data-theme-file="css/color-themes/pink-theme.css"></span>
-      <span class="palate hotpink-color" data-theme-file="css/color-themes/hotpink-color.css"></span>
-    </div>
-  </div>
-
-  <ul class="box-version option-box">
-    <li class="box">Boxed</li>
-    <li>Full width</li>
-  </ul>
-  <ul class="rtl-version option-box">
-    <li class="rtl">RTL Version</li>
-    <li>LTR Version</li>
-  </ul>
-
-  <a href="#" class="purchase-btn">Purchase now $17</a>
-
-  <div class="palate-foo">
-    <span>You will find much more options for colors and styling in admin panel. This color picker is used only for demonstation purposes.</span>
-  </div>
-
-</div> -->
 <?php wp_footer(); ?>
 </body>
 
