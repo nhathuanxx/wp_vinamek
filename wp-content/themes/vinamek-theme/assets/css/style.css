@@ -9705,6 +9705,22 @@ body.visible-menu-bar .fullscreen-menu {
 	gap: 6px;
 }
 
+.header-lang-content-mobile {
+	align-items: center;
+	gap: 6px;
+	display: none;
+	position: absolute;
+}
+
+@media only screen and (max-width: 767px) {
+	.header-lang-content-mobile {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+}
+
 .lang-img-container img {
 	width: 24px;
 }

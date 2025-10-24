@@ -24,14 +24,22 @@
                                                             }
                                                             ?></a>
             </div>
-            <div class="text">Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. </div>
-            <a href="#" class="theme-btn btn-style-two">Read More</a>
+            <div class="text"><?php
+                              $mo_ta_ngan = get_field('mo_ta_ngan', 'option');
+                              if ($mo_ta_ngan): ?>
+                <?php echo esc_html($mo_ta_ngan); ?>
+              <?php endif; ?> </div>
+            <div class="text"><?php echo ($lang === 'vi') ? 'MST: ' : 'TAX CODE: '; ?>
+              <?php
+              $ma_so_thue = get_field('ma_so_thue', 'option');
+              if ($ma_so_thue): ?>
+                <?php echo esc_html($ma_so_thue); ?>
+              <?php endif; ?> </div>
+            <!-- <a href="#" class="theme-btn btn-style-two">Read More</a> -->
           </div>
         </div>
 
-        <!--Footer Column-->
-        <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-          <!--About Widget-->
+        <!-- <div class="footer-column col-lg-4 col-md-6 col-sm-12">
           <div class="footer-widget links-widget">
             <h5>Usefull Links</h5>
             <div class="row clearfix">
@@ -54,28 +62,98 @@
           </div>
         </div>
 
-        <!--Footer Column-->
         <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-          <!--About Widget-->
-          <div class="footer-widget news-widget">
-            <h5>Latest News</h5>
-
-            <div class="news-widget-block">
-              <div class="inner">
-                <div class="icon flaticon-world"></div>
-                <div class="post-date">February 14, 2019</div>
-                <div class="text"><a href="#">Seminar for improve business profit & loss</a></div>
-              </div>
+          <div class="footer-widget links-widget">
+            <h5>Usefull Links</h5>
+            <div class="row clearfix">
+              <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                <li><a href="#">Business Growth</a></li>
+                <li><a href="#">Sustainability</a></li>
+                <li><a href="#">Performance</a></li>
+                <li><a href="#">Customer Insights</a></li>
+                <li><a href="#">Organization</a></li>
+                <li><a href="#">Advanced Analytics</a></li>
+              </ul>
+              <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                <li><a href="#">About Industry</a></li>
+                <li><a href="#">Customer FAQ’s</a></li>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">Free Consultation</a></li>
+                <li><a href="#">Meet Our Team</a></li>
+              </ul>
             </div>
+          </div>
+        </div> -->
+        <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+          <div class="footer-widget links-widget">
+            <?php if ($nhom_1 = get_field('nhom_1', 'option')): ?>
+              <h5><?php echo esc_html($nhom_1); ?></h5>
+            <?php endif; ?>
 
-            <div class="news-widget-block">
-              <div class="inner">
-                <div class="icon flaticon-graduation-cap"></div>
-                <div class="post-date">January 21, 2019</div>
-                <div class="text"><a href="#">Experts Openion for save money for your future.</a></div>
-              </div>
+            <div class="row clearfix">
+              <?php
+              // Cột 1 Nhóm 1
+              if (have_rows('cot_1_nhom_1', 'option')): ?>
+                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                  <?php while (have_rows('cot_1_nhom_1', 'option')): the_row(); ?>
+                    <?php
+                    $title = get_sub_field('title');
+                    $link = get_sub_field('link');
+                    ?>
+                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
+
+              <?php
+              // Cột 2 Nhóm 1
+              if (have_rows('cot_2_nhom_1', 'option')): ?>
+                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                  <?php while (have_rows('cot_2_nhom_1', 'option')): the_row(); ?>
+                    <?php
+                    $title = get_sub_field('title');
+                    $link = get_sub_field('link');
+                    ?>
+                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
             </div>
+          </div>
+        </div>
 
+        <!-- Nhóm 2 -->
+        <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+          <div class="footer-widget links-widget">
+            <?php if ($nhom_2 = get_field('nhom_2', 'option')): ?>
+              <h5><?php echo esc_html($nhom_2); ?></h5>
+            <?php endif; ?>
+
+            <div class="row clearfix">
+              <?php if (have_rows('cot_1_nhom_2', 'option')): ?>
+                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                  <?php while (have_rows('cot_1_nhom_2', 'option')): the_row(); ?>
+                    <?php
+                    $title = get_sub_field('title');
+                    $link = get_sub_field('link');
+                    ?>
+                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
+
+              <?php if (have_rows('cot_2_nhom_2', 'option')): ?>
+                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+                  <?php while (have_rows('cot_2_nhom_2', 'option')): the_row(); ?>
+                    <?php
+                    $title = get_sub_field('title');
+                    $link = get_sub_field('link');
+                    ?>
+                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
 
@@ -156,7 +234,11 @@
     <div class="auto-container">
       <div class="row clearfix">
         <div class="column col-md-6 col-sm-12 col-xs-12">
-          <div class="copyright"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></div>
+          <div class="copyright">© 2025 - <a target="_blank" href="<?php echo esc_url(home_url()); ?>"><?php
+                                                                                                        $ten_web = get_field('ten_web', 'option');
+                                                                                                        if ($ten_web): ?>
+                <?php echo esc_html($ten_web); ?>
+              <?php endif; ?></a></div>
         </div>
         <div class="nav-column col-md-6 col-sm-12 col-xs-12">
           <ul class="footer-nav">

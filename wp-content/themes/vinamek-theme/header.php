@@ -116,6 +116,39 @@
             <div class="nav-outer clearfix">
               <nav class="main-menu navbar-expand-md">
                 <div class="navbar-header">
+                   <?php
+                  $translations = pll_the_languages(array(
+                    'raw' => 1,
+                    'hide_if_no_translation' => 0, // hiển thị tất cả ngôn ngữ
+                  ));
+
+                  if (!empty($translations)) :
+                    $current_lang = pll_current_language('slug');
+                    $url_flags = get_template_directory_uri() . '/assets/images/vinamek/';
+                  ?>
+                    <div class="header-lang-content-mobile">
+
+                      <!-- Hiển thị cờ ngôn ngữ hiện tại -->
+                      <div class="lang-img-container">
+                        <?php
+                        if (isset($translations[$current_lang])) {
+                          echo '<img class="lang-img" src="' . esc_url($url_flags . 'flag-' . $current_lang . '.png') . '" alt="' . esc_attr($current_lang) . '">';
+                        }
+                        ?>
+                      </div>
+
+                      <select class="select-circle" onchange="if(this.value){window.location=this.value;}">
+                        <?php foreach ($translations as $lang => $translation) : ?>
+                          <option
+                            value="<?php echo esc_url($translation['url']); ?>"
+                            <?php selected($translation['current_lang'], true); ?>>
+                            <?php echo esc_html($translation['name']); ?>
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+
+                    </div>
+                  <?php endif; ?>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'vinamek'); ?>">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
