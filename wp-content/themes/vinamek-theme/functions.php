@@ -81,7 +81,7 @@ function vinamek_register_strings()
   }
 }
 add_action('init', 'vinamek_register_strings');
-
+add_theme_support('post-thumbnails');
 // ======================================================
 // Bootstrap 5 Nav Walker - Tạo menu dropdown hoạt động
 // ======================================================
@@ -215,4 +215,134 @@ if (function_exists('acf_add_options_page')) {
     'capability'  => 'edit_posts',
     'redirect'    => false
   ));
+}
+add_filter('woocommerce_show_page_title', '__return_false');
+add_filter( 'get_the_archive_title', function ($title) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false ); // chỉ lấy tên category
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_tax() ) {
+        $title = single_term_title( '', false );
+    }
+    return $title;
+});
+
+
+
+
+add_action( 'wp_enqueue_scripts', 'vinamek_blog_enqueue_assets' );
+function vinamek_blog_enqueue_assets() {
+    if ( is_page_template( 'template-blog-ajax.php' ) ) {
+        // wp_enqueue_style( 'vinamek-blog-style', get_template_directory_uri() . '/assets/css/vinamek-blog.css', array(), '1.0' );
+        wp_enqueue_script( 'vinamek-blog-js', get_template_directory_uri() . '/assets/js/vinamek-blog.js', array('jquery'), '1.0', true );
+
+        // Localize data for AJAX
+        $ajax_data = array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( 'vinamek_blog_nonce' ),
+            'posts_per_page' => 10,
+            'lang' => function_exists('pll_current_language') ? pll_current_language('slug') : ''
+        );
+        wp_localize_script( 'vinamek-blog-js', 'vinamekBlog', $ajax_data );
+    }
+}
+
+/**
+ * AJAX handler - returns posts HTML + pagination HTML
+ */
+add_action( 'wp_ajax_vinamek_load_posts', 'vinamek_load_posts_ajax' );
+add_action( 'wp_ajax_nopriv_vinamek_load_posts', 'vinamek_load_posts_ajax' );
+
+function vinamek_load_posts_ajax() {
+    check_ajax_referer( 'vinamek_blog_nonce', 'nonce' );
+
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+    $category = isset($_POST['category']) && $_POST['category'] !== '' ? sanitize_text_field( $_POST['category'] ) : '';
+    $search = isset($_POST['s']) ? sanitize_text_field( $_POST['s'] ) : '';
+    $posts_per_page = isset($_POST['ppp']) ? intval($_POST['ppp']) : 10;
+    $lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $paged,
+        's' => $search,
+    );
+
+    if ( $category !== '' ) {
+        $args['category_name'] = $category;
+    }
+
+    // Polylang support
+    if ( $lang && function_exists('pll_current_language') ) {
+        $args['lang'] = $lang;
+    }
+
+    $q = new WP_Query( $args );
+
+    ob_start();
+
+    if ( $q->have_posts() ) {
+        while ( $q->have_posts() ) {
+            $q->the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" class="post-card ajax-post-card">
+              <a class="post-link" href="<?php the_permalink(); ?>">
+                <div class="post-thumb">
+                  <?php
+                  if ( has_post_thumbnail() ) {
+                      the_post_thumbnail( 'medium' );
+                  } else {
+                      echo '<img src="' . get_template_directory_uri() . '/assets/img/placeholder-600x400.png" alt="' . esc_attr(get_the_title()) . '">';
+                  }
+                  ?>
+                </div>
+                <div class="post-body">
+                  <h3 class="post-title"><?php the_title(); ?></h3>
+                  <div class="post-meta">
+                    <span class="post-date"><?php echo get_the_date( 'd M, Y' ); ?></span>
+                  </div>
+                  <div class="post-excerpt">
+                    <?php
+                      if ( has_excerpt() ) {
+                        echo wp_kses_post( wp_trim_words( get_the_excerpt(), 30, '...' ) );
+                      } else {
+                        echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) );
+                      }
+                    ?>
+                  </div>
+                </div>
+              </a>
+            </article>
+            <?php
+        }
+        wp_reset_postdata();
+    } else {
+        echo '<p class="no-posts">Không có bài viết.</p>';
+    }
+
+    $posts_html = ob_get_clean();
+
+    // pagination
+    $total_pages = $q->max_num_pages;
+    $pagination_html = '';
+    if ( $total_pages > 1 ) {
+        $big = 999999999;
+        $pagination_html = paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max(1, $paged),
+            'total' => $total_pages,
+            'prev_text' => '&laquo; Trước',
+            'next_text' => 'Sau &raquo;',
+            'type' => 'list',
+        ) );
+    }
+
+    wp_send_json_success( array(
+        'posts' => $posts_html,
+        'pagination' => $pagination_html,
+        'found' => $q->found_posts,
+    ) );
 }

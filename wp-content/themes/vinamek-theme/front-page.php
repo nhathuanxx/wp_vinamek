@@ -4,7 +4,6 @@
 */
 get_header(); ?>
 <?php $lang = pll_current_language('slug'); ?>
-<!--Main Slider-->
 <section class="main-slider">
 
 	<div class="main-slider-carousel owl-carousel owl-theme">
