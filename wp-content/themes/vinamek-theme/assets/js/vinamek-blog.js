@@ -68,15 +68,37 @@ jQuery(document).ready(function($) {
         }
 
         // pagination click
-        $pagWrap.find('a').off('click').on('click', function(e) {
-          e.preventDefault();
-          const href = $(this).attr('href') || '';
-          let p = 1;
-          const match = href.match(/paged=(\d+)/);
-          if (match && match[1]) p = parseInt(match[1], 10);
-          loadPosts({ paged: p });
-          $('html, body').animate({ scrollTop: $('#vinamek-posts-wrap').offset().top - 100 }, 400);
-        });
+          $pagWrap.find('a').off('click').on('click', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href') || '';
+            let p = 1;
+
+            // Try several strategies to extract page number:
+            // 1) query param ?paged=2
+            const qmatch = href.match(/[?&]paged=(\d+)/);
+            if (qmatch && qmatch[1]) {
+              p = parseInt(qmatch[1], 10);
+            } else {
+              // 2) pretty permalink /page/2/
+              const pmatch = href.match(/\/page\/(\d+)\/?/);
+              if (pmatch && pmatch[1]) {
+                p = parseInt(pmatch[1], 10);
+              } else {
+                // 3) try last numeric path segment (fallback)
+                try {
+                  const url = new URL(href, location.origin);
+                  const parts = url.pathname.replace(/\/$/, '').split('/');
+                  const last = parts[parts.length - 1];
+                  if (/^\d+$/.test(last)) p = parseInt(last, 10);
+                } catch (err) {
+                  // if href is relative or invalid, ignore
+                }
+              }
+            }
+
+            loadPosts({ paged: p });
+            $('html, body').animate({ scrollTop: $('#vinamek-posts-wrap').offset().top - 100 }, 400);
+          });
       } else {
         $wrap.removeClass('loading').html('<p class="no-posts">Không có bài viết.</p>');
       }

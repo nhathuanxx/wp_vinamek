@@ -233,7 +233,7 @@ add_filter( 'get_the_archive_title', function ($title) {
 
 add_action( 'wp_enqueue_scripts', 'vinamek_blog_enqueue_assets' );
 function vinamek_blog_enqueue_assets() {
-    if ( is_page_template( 'template-blog-ajax.php' ) ) {
+  if ( is_page_template( array( 'template-blog-ajax.php', 'template-blog.php' ) ) ) {
         // wp_enqueue_style( 'vinamek-blog-style', get_template_directory_uri() . '/assets/css/vinamek-blog.css', array(), '1.0' );
         wp_enqueue_script( 'vinamek-blog-js', get_template_directory_uri() . '/assets/js/vinamek-blog.js', array('jquery'), '1.0', true );
 
@@ -325,20 +325,21 @@ function vinamek_load_posts_ajax() {
     $posts_html = ob_get_clean();
 
     // pagination
-    $total_pages = $q->max_num_pages;
-    $pagination_html = '';
-    if ( $total_pages > 1 ) {
-        $big = 999999999;
-        $pagination_html = paginate_links( array(
-            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-            'format' => '?paged=%#%',
-            'current' => max(1, $paged),
-            'total' => $total_pages,
-            'prev_text' => '&laquo; Trước',
-            'next_text' => 'Sau &raquo;',
-            'type' => 'list',
-        ) );
-    }
+  $total_pages = $q->max_num_pages;
+  $pagination_html = '';
+
+  if ( $total_pages > 1 ) {
+    $big = 999999999;
+    $pagination_html = paginate_links( array(
+      'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+      'format' => '?paged=%#%',
+      'current' => max(1, $paged),
+      'total' => $total_pages,
+      'prev_text' => '&laquo; Trước',
+      'next_text' => 'Sau &raquo;',
+      'type' => 'list',
+    ) );
+  }
 
     wp_send_json_success( array(
         'posts' => $posts_html,
