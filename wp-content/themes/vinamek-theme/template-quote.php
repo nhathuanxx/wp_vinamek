@@ -12,7 +12,7 @@ $current_url = get_permalink();
 
 <section class="vinamek-quote-hero" style="background:#f6fbfe;padding:48px 0;border-bottom:1px solid #e9f6fb;">
     <div class="auto-container" style="max-width:1200px;margin:0 auto;padding:0 20px;">
-        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;">
             <div style="flex:1;min-width:280px;">
                 <h1 style="color:#13b5ea;font-weight:700;margin:0 0 12px;font-size:32px;"><?php echo $lang === 'en' ? 'Request a Quote' : 'Yêu cầu báo giá'; ?></h1>
                 <p style="color:#333;margin:0 0 16px;font-size:16px;"><?php echo $lang === 'en' ? 'We provide consultation, design, installation and maintenance for electrical systems, lighting, control cabinets and custom metalworks.' : 'Chúng tôi tư vấn, thiết kế, lắp đặt, bảo trì hệ thống điện, chiếu sáng, vỏ tủ điện, tủ PCCC, sản xuất tủ điện, thang, máng cáp và cơ khí theo yêu cầu.'; ?></p>
@@ -50,7 +50,11 @@ $current_url = get_permalink();
                     }
 
                     // Placeholder for Contact Form 7 (user will paste shortcode here)
-                    echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="" title="Quote Form Placeholder"]') . '</div>';
+                    if ($lang === 'vi') {
+    echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="f0d0f39" title="Báo giá"]') . '</div>';
+} else {
+    echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="b08e691" title="Báo giá (en)"]') . '</div>';
+};
                     ?>
 
                 </div>
@@ -272,6 +276,65 @@ $tel_number_mobile = $acf_phone_mobile ? preg_replace('/\D+/', '', $acf_phone_mo
             height: 22px;
         }
     }
+</style>
+
+<style>
+    .quote-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 24px;
+  padding: 25px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.quote-form-wrapper label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.quote-form-wrapper .input-text,
+.quote-form-wrapper .textarea-text {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.quote-form-wrapper .input-text:focus,
+.quote-form-wrapper .textarea-text:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 8px rgba(40,167,69,0.2);
+  outline: none;
+}
+
+.quote-form-wrapper .textarea-text {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.quote-form-wrapper .btn-submit {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quote-form-wrapper .btn-submit:hover {
+  background-color: #218838;
+}
 </style>
 
 <?php if ($tel_number_mobile): ?>
