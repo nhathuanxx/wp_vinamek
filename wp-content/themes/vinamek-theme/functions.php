@@ -382,3 +382,18 @@ function custom_contact_button() {
     echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
     echo '</div>';
 }
+
+add_action('after_setup_theme', function() {
+    add_theme_support('woocommerce');
+    add_theme_support('wc-product-gallery-zoom');       // zoom khi hover
+    add_theme_support('wc-product-gallery-lightbox');  // lightbox khi click
+    add_theme_support('wc-product-gallery-slider');    // slider cho nhiều ảnh
+});
+function vinamek_enqueue_wc_gallery_assets() {
+    if ( is_product() ) {
+        // Load script gallery WC
+        wp_enqueue_script('wc-single-product'); // gallery, slider
+        wp_enqueue_script('zoom');              // zoom nếu bật
+    }
+}
+add_action('wp_enqueue_scripts', 'vinamek_enqueue_wc_gallery_assets', 99);

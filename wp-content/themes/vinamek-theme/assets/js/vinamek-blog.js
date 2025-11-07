@@ -9,19 +9,17 @@ jQuery(document).ready(function($) {
 
   function showSkeleton() {
     const $wrap = $('#vinamek-posts-wrap');
-    const skeletonCount = 6;
     let html = '';
-    for (let i = 0; i < skeletonCount; i++) {
-      html += `
-        <div class="post-card skeleton">
-          <div class="post-thumb skeleton-thumb"></div>
-          <div class="post-body">
-            <div class="skeleton-line title"></div>
-            <div class="skeleton-line meta"></div>
-            <div class="skeleton-line excerpt"></div>
-            <div class="skeleton-line excerpt"></div>
-          </div>
-        </div>`;
+    for (let i = 0; i < 6; i++) {
+      html += `<div class="post-card skeleton">
+        <div class="post-thumb skeleton-thumb"></div>
+        <div class="post-body">
+          <div class="skeleton-line title"></div>
+          <div class="skeleton-line meta"></div>
+          <div class="skeleton-line excerpt"></div>
+          <div class="skeleton-line excerpt"></div>
+        </div>
+      </div>`;
     }
     $wrap.addClass('loading').html(html);
     $('#vinamek-pagination').html('');
@@ -41,14 +39,13 @@ jQuery(document).ready(function($) {
       data: {
         action: 'vinamek_load_posts',
         nonce,
-        category: currentCategory,
+        category: currentCategory === 'all' ? '' : currentCategory,
         s: currentSearch,
         paged: currentPage,
         ppp: postsPerPage,
         lang
       }
-    })
-    .done(function(res) {
+    }).done(function(res) {
       const $wrap = $('#vinamek-posts-wrap');
       const $pagWrap = $('#vinamek-pagination');
       if (res.success) {
@@ -57,7 +54,7 @@ jQuery(document).ready(function($) {
         $('#vinamek-list-meta').text(res.data.found + ' ' + (lang === 'en' ? 'results' : 'kết quả'));
 
         // cập nhật tiêu đề
-        if (currentCategory) {
+        if (currentCategory && currentCategory !== 'all') {
           const $activeCat = $('#vinamek-category-list .category-item[data-slug="'+currentCategory+'"]');
           const name = $activeCat.length ? $activeCat.find('.cat-link').clone().children().remove().end().text().trim() : currentCategory;
           $('#vinamek-list-title').text((lang === 'en' ? 'Posts: ' : 'Bài viết: ') + name);
@@ -68,60 +65,58 @@ jQuery(document).ready(function($) {
         }
 
         // pagination click
-          $pagWrap.find('a').off('click').on('click', function(e) {
-            e.preventDefault();
-            const href = $(this).attr('href') || '';
-            let p = 1;
-
-            // Try several strategies to extract page number:
-            // 1) query param ?paged=2
-            const qmatch = href.match(/[?&]paged=(\d+)/);
-            if (qmatch && qmatch[1]) {
-              p = parseInt(qmatch[1], 10);
-            } else {
-              // 2) pretty permalink /page/2/
-              const pmatch = href.match(/\/page\/(\d+)\/?/);
-              if (pmatch && pmatch[1]) {
-                p = parseInt(pmatch[1], 10);
-              } else {
-                // 3) try last numeric path segment (fallback)
-                try {
-                  const url = new URL(href, location.origin);
-                  const parts = url.pathname.replace(/\/$/, '').split('/');
-                  const last = parts[parts.length - 1];
-                  if (/^\d+$/.test(last)) p = parseInt(last, 10);
-                } catch (err) {
-                  // if href is relative or invalid, ignore
-                }
-              }
-            }
-
-            loadPosts({ paged: p });
-            $('html, body').animate({ scrollTop: $('#vinamek-posts-wrap').offset().top - 100 }, 400);
-          });
+        $pagWrap.find('a').off('click').on('click', function(e) {
+          e.preventDefault();
+          const href = $(this).attr('href') || '';
+          let p = 1;
+          const qmatch = href.match(/[?&]paged=(\d+)/);
+          if (qmatch && qmatch[1]) p = parseInt(qmatch[1], 10);
+          const pmatch = href.match(/\/page\/(\d+)\/?/);
+          if (pmatch && pmatch[1]) p = parseInt(pmatch[1], 10);
+          loadPosts({ paged: p });
+          $('html, body').animate({ scrollTop: $('#vinamek-posts-wrap').offset().top - 100 }, 400);
+        });
       } else {
         $wrap.removeClass('loading').html('<p class="no-posts">Không có bài viết.</p>');
       }
-    })
-    .fail(function() {
+    }).fail(function() {
       $('#vinamek-posts-wrap').removeClass('loading').html('<p class="no-posts">Lỗi khi tải bài viết.</p>');
     });
   }
 
-  // khởi tạo
-  loadPosts();
+  function selectCategory(slug) {
+    $('#vinamek-category-list .category-item').removeClass('active');
+    const $activeItem = $('#vinamek-category-list .category-item[data-slug="'+slug+'"]');
+    $activeItem.addClass('active');
+    currentPage = 1;
+    currentCategory = slug;
+    currentSearch = '';
+    loadPosts({ category: slug, paged: 1 });
+  }
+
+  // khởi tạo khi load page
+  if (window.location.hash) {
+    const slug = window.location.hash.replace('#','');
+    selectCategory(slug);
+  } else {
+    loadPosts();
+  }
 
   // click category
   $('#vinamek-category-list').on('click', '.category-item', function(e) {
     e.preventDefault();
-    const slug = $(this).data('slug') || '';
-    $('#vinamek-category-list .category-item').removeClass('active');
-    $(this).addClass('active');
-    currentPage = 1;
-    loadPosts({ category: slug, paged: 1 });
+    const slug = $(this).data('slug') || 'all';
+    window.location.hash = slug;
+    selectCategory(slug);
   });
 
-  // form search
+  // lắng nghe hashchange (back/forward)
+  $(window).on('hashchange', function() {
+    const slug = window.location.hash.replace('#','');
+    selectCategory(slug);
+  });
+
+  // search form
   $('#vinamek-search-form').on('submit', function(e) {
     e.preventDefault();
     const q = $('#vinamek-search-input').val().trim();
@@ -129,6 +124,7 @@ jQuery(document).ready(function($) {
     currentPage = 1;
     $('#vinamek-category-list .category-item').removeClass('active');
     $('#vinamek-category-list .category-item[data-slug=""]').addClass('active');
+    window.location.hash = ''; // reset hash
     loadPosts({ category: '', search: q, paged: 1 });
   });
 });

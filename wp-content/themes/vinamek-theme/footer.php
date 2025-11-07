@@ -84,78 +84,88 @@
             </div>
           </div>
         </div> -->
-        <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-          <div class="footer-widget links-widget">
-            <?php if ($nhom_1 = get_field('nhom_1', 'option')): ?>
-              <h5><?php echo esc_html($nhom_1); ?></h5>
-            <?php endif; ?>
+       <?php 
+$site_url = get_site_url(); // Lấy domain của website
+?>
 
-            <div class="row clearfix">
-              <?php
-              // Cột 1 Nhóm 1
-              if (have_rows('cot_1_nhom_1', 'option')): ?>
-                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
-                  <?php while (have_rows('cot_1_nhom_1', 'option')): the_row(); ?>
-                    <?php
-                    $title = get_sub_field('title');
-                    $link = get_sub_field('link');
-                    ?>
-                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
+<div class="footer-column col-lg-4 col-md-6 col-sm-12">
+  <div class="footer-widget links-widget">
+    <?php if ($nhom_1 = get_field('nhom_1', 'option')): ?>
+      <h5><?php echo esc_html($nhom_1); ?></h5>
+    <?php endif; ?>
 
-              <?php
-              // Cột 2 Nhóm 1
-              if (have_rows('cot_2_nhom_1', 'option')): ?>
-                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
-                  <?php while (have_rows('cot_2_nhom_1', 'option')): the_row(); ?>
-                    <?php
-                    $title = get_sub_field('title');
-                    $link = get_sub_field('link');
-                    ?>
-                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
+    <div class="row clearfix">
+      <?php if (have_rows('cot_1_nhom_1', 'option')): ?>
+        <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+          <?php while (have_rows('cot_1_nhom_1', 'option')): the_row(); 
+            $title = get_sub_field('title');
+            $link = get_sub_field('link');
 
-        <!-- Nhóm 2 -->
-        <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-          <div class="footer-widget links-widget">
-            <?php if ($nhom_2 = get_field('nhom_2', 'option')): ?>
-              <h5><?php echo esc_html($nhom_2); ?></h5>
-            <?php endif; ?>
+            // Nếu link bắt đầu bằng / thì thêm domain trước
+            if ($link && str_starts_with($link, '/')) {
+              $link = $site_url . $link;
+            }
+          ?>
+          <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+          <?php endwhile; ?>
+        </ul>
+      <?php endif; ?>
 
-            <div class="row clearfix">
-              <?php if (have_rows('cot_1_nhom_2', 'option')): ?>
-                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
-                  <?php while (have_rows('cot_1_nhom_2', 'option')): the_row(); ?>
-                    <?php
-                    $title = get_sub_field('title');
-                    $link = get_sub_field('link');
-                    ?>
-                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
+      <?php if (have_rows('cot_2_nhom_1', 'option')): ?>
+        <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+          <?php while (have_rows('cot_2_nhom_1', 'option')): the_row(); 
+            $title = get_sub_field('title');
+            $link = get_sub_field('link');
+            if ($link && str_starts_with($link, '/')) {
+              $link = $site_url . $link;
+            }
+          ?>
+          <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+          <?php endwhile; ?>
+        </ul>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
 
-              <?php if (have_rows('cot_2_nhom_2', 'option')): ?>
-                <ul class="link-list col-md-6 col-sm-6 col-xs-12">
-                  <?php while (have_rows('cot_2_nhom_2', 'option')): the_row(); ?>
-                    <?php
-                    $title = get_sub_field('title');
-                    $link = get_sub_field('link');
-                    ?>
-                    <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
-                  <?php endwhile; ?>
-                </ul>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
+<!-- Nhóm 2 -->
+<div class="footer-column col-lg-4 col-md-6 col-sm-12">
+  <div class="footer-widget links-widget">
+    <?php if ($nhom_2 = get_field('nhom_2', 'option')): ?>
+      <h5><?php echo esc_html($nhom_2); ?></h5>
+    <?php endif; ?>
+
+    <div class="row clearfix">
+      <?php if (have_rows('cot_1_nhom_2', 'option')): ?>
+        <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+          <?php while (have_rows('cot_1_nhom_2', 'option')): the_row(); 
+            $title = get_sub_field('title');
+            $link = get_sub_field('link');
+            if ($link && str_starts_with($link, '/')) {
+              $link = $site_url . $link;
+            }
+          ?>
+          <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+          <?php endwhile; ?>
+        </ul>
+      <?php endif; ?>
+
+      <?php if (have_rows('cot_2_nhom_2', 'option')): ?>
+        <ul class="link-list col-md-6 col-sm-6 col-xs-12">
+          <?php while (have_rows('cot_2_nhom_2', 'option')): the_row(); 
+            $title = get_sub_field('title');
+            $link = get_sub_field('link');
+            if ($link && str_starts_with($link, '/')) {
+              $link = $site_url . $link;
+            }
+          ?>
+          <li><a href="<?php echo esc_url($link); ?>"><?php echo esc_html($title); ?></a></li>
+          <?php endwhile; ?>
+        </ul>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
 
       </div>
     </div>
@@ -240,14 +250,14 @@
                 <?php echo esc_html($ten_web); ?>
               <?php endif; ?></a></div>
         </div>
-        <div class="nav-column col-md-6 col-sm-12 col-xs-12">
+        <!-- <div class="nav-column col-md-6 col-sm-12 col-xs-12">
           <ul class="footer-nav">
             <li><a href="#">Legal</a></li>
             <li><a href="#">Sitemap</a></li>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms & Condition</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
