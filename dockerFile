@@ -1,0 +1,9 @@
+# Dockerfile
+FROM wordpress:latest
+
+# Cài plugin hoặc theme (ví dụ)
+# COPY ./my-plugin /var/www/html/wp-content/plugins/my-plugin
+# COPY ./my-theme /var/www/html/wp-content/themes/my-theme
+
+# Đặt quyền
+RUN chown -R www-data:www-data /var/www/html
