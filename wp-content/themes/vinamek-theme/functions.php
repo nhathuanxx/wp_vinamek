@@ -359,6 +359,8 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 add_action('woocommerce_after_shop_loop_item', 'custom_contact_button', 20);
 add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
 
+
+//giao diện chi tiết sản phẩm sau khi custom
 function custom_contact_button() {
     // Lấy ngôn ngữ hiện tại từ Polylang
     $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
@@ -397,3 +399,250 @@ function vinamek_enqueue_wc_gallery_assets() {
     }
 }
 add_action('wp_enqueue_scripts', 'vinamek_enqueue_wc_gallery_assets', 99);
+
+
+// 1. Remove gallery mặc định
+remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
+
+// 2. Thêm gallery custom
+add_action('woocommerce_before_single_product_summary', 'vinamek_custom_product_gallery', 20);
+
+function vinamek_custom_product_gallery() {
+  global $product;
+  if (!$product) return;
+
+  // Lấy ảnh chính + gallery
+  $image_ids = array_merge(
+    array($product->get_image_id()),
+    $product->get_gallery_image_ids()
+  );
+  if (!$image_ids) $image_ids = array(0);
+
+  // Swiper CDN
+  echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />';
+  echo '<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>';
+
+  // Wrapper gallery
+  echo '<div class="vinamek-gallery-wrapper">';
+
+  // Ảnh chính
+  $first_image = $image_ids[0] ? wp_get_attachment_url($image_ids[0]) : wc_placeholder_img_src();
+  echo '<div class="vinamek-main-image">';
+  echo '<img id="vinamek-main-img" src="'.esc_url($first_image).'" alt="'.esc_attr(get_the_title()).'">';
+  echo '</div>';
+
+  // Thumbnails (ẩn prev/next)
+  if (count($image_ids) > 1) {
+    echo '<div class="vinamek-thumbnails swiper">';
+    echo '<div class="swiper-wrapper">';
+    foreach ($image_ids as $index => $id) {
+      $thumb_url = $id ? wp_get_attachment_url($id) : wc_placeholder_img_src();
+      echo '<div class="swiper-slide"><img data-index="'.$index.'" src="'.esc_url($thumb_url).'" alt="'.esc_attr(get_the_title()).'" class="vinamek-thumb"></div>';
+    }
+    echo '</div>'; // .swiper-wrapper
+    echo '</div>'; // .vinamek-thumbnails
+  }
+
+  echo '</div>'; // .vinamek-gallery-wrapper
+
+  // ============== CSS ==============
+  echo '<style>
+  /* --- Layout --- */
+  .single-product .product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .vinamek-gallery-wrapper {
+    width: 48%;
+    min-width: 320px;
+    max-width: 600px;
+  }
+
+  .single-product .summary.entry-summary {
+    width: 48%;
+    min-width: 260px;
+    align-self: flex-start;
+    margin-top: 0 !important;
+  }
+
+  .woocommerce-tabs {
+    width: 100%;
+    order: 99;
+    margin-top: 18px;
+  }
+
+  /* Main image */
+  .vinamek-main-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    cursor: grab;
+  }
+  .vinamek-main-image img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.22s ease;
+    transform-origin: center center;
+    user-select: none;
+  }
+  .vinamek-main-image.zoomed img {
+    transform: scale(2);
+    cursor: move;
+  }
+
+  /* Thumbnails */
+  .vinamek-thumbnails {
+    width: 100%;
+    padding: 8px 8px;
+    margin-top: 12px;
+  }
+  .vinamek-thumbnails .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .vinamek-thumbnails .swiper-slide {
+    width: 80px !important;
+    height: 80px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .vinamek-thumb {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    cursor: pointer;
+  }
+  .vinamek-thumb:hover { transform: scale(1.05); }
+  .vinamek-thumb.active {
+    border-color: #ff2f2f;
+    box-shadow: 0 6px 18px rgba(255,47,47,0.12);
+    transform: scale(1.03);
+  }
+
+  /* Ẩn hoàn toàn prev/next */
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .vinamek-gallery-wrapper, .single-product .summary.entry-summary {
+      width: 100%;
+    }
+    .vinamek-thumbnails { padding: 6px 8px; }
+    .vinamek-thumbnails .swiper-slide { width: 64px !important; height: 64px !important; }
+  }
+  @media (max-width: 480px) {
+    .vinamek-thumbnails .swiper-slide { width: 56px !important; height: 56px !important; }
+  }
+  </style>';
+
+  // ============== JS ==============
+  echo '<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const mainContainer = document.querySelector(".vinamek-main-image");
+    const mainImg = document.getElementById("vinamek-main-img");
+    const thumbs = document.querySelectorAll(".vinamek-thumb");
+    let zoomed = false, isDragging = false;
+    let startX = 0, startY = 0, moveX = 0, moveY = 0, currentX = 0, currentY = 0;
+
+    if (thumbs.length) {
+      thumbs.forEach(t => t.classList.remove("active"));
+      thumbs[0].classList.add("active");
+    }
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener("click", function() {
+        mainImg.src = this.src;
+        thumbs.forEach(t => t.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+
+    // Double click để zoom
+    mainContainer.addEventListener("dblclick", function() {
+      zoomed = !zoomed;
+      if (zoomed) {
+        mainContainer.classList.add("zoomed");
+        mainContainer.style.cursor = "move";
+      } else {
+        mainContainer.classList.remove("zoomed");
+        mainImg.style.transform = "translate(0,0) scale(1)";
+        currentX = currentY = 0;
+        mainContainer.style.cursor = "grab";
+      }
+    });
+
+    // Kéo ảnh
+    mainContainer.addEventListener("mousedown", function(e) {
+      e.preventDefault();
+      isDragging = true;
+      startX = e.clientX - currentX;
+      startY = e.clientY - currentY;
+      mainContainer.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", function(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      moveX = e.clientX - startX;
+      moveY = e.clientY - startY;
+      const maxMove = zoomed ? 220 : 40;
+      moveX = Math.max(-maxMove, Math.min(maxMove, moveX));
+      moveY = Math.max(-maxMove, Math.min(maxMove, moveY));
+      currentX = moveX;
+      currentY = moveY;
+      const scale = zoomed ? 2 : 1.05;
+      mainImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+    });
+
+    document.addEventListener("mouseup", function() {
+      if (isDragging) {
+        isDragging = false;
+        mainContainer.style.cursor = zoomed ? "move" : "grab";
+      }
+    });
+
+    const updateActiveBySrc = (src) => {
+      thumbs.forEach(t => {
+        if (t.src === src) {
+          thumbs.forEach(x => x.classList.remove("active"));
+          t.classList.add("active");
+        }
+      });
+    };
+    const obs = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === "src") updateActiveBySrc(mainImg.src);
+      });
+    });
+    if (mainImg) obs.observe(mainImg, { attributes: true });
+
+    new Swiper(".vinamek-thumbnails.swiper", {
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      breakpoints: { 480: { spaceBetween: 8 } }
+    });
+  });
+  </script>';
+}
