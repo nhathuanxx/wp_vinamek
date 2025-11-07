@@ -6,7 +6,7 @@ services:
     container_name: wordpress
     restart: unless-stopped
     ports:
-      - "8080:80"   
+      - "8998:80"  
     environment:
       DB_HOST: 45.118.145.59:3388   # thay bằng địa chỉ DB của bạn
       DB_USER: onecetawin       # user DB
