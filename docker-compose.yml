@@ -14,6 +14,7 @@ services:
       DB_NAME: wp_vinamek       # tên database
     volumes:
       - wordpress_data:/var/www/html
+      - ./wp-config.php:/var/www/html/wp-config.php
     networks:
       - wp-network
 
