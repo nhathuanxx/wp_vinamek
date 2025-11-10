@@ -13,8 +13,8 @@ services:
       DB_PASSWORD: Onelog@@!59!!Onecetawin!!   # mật khẩu DB
       DB_NAME: wp_vinamek       # tên database
     volumes:
-      - wordpress_data:/var/www/html
       - ./wp-config.php:/var/www/html/wp-config.php
+      - ./wp-content:/var/www/html/wp-content
     networks:
       - wp-network
 
