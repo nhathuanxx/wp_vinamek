@@ -4,7 +4,7 @@
  * Usage: get_template_part('template-parts/page', 'title', array('bg' => $bg_image));
  */
 
-$bg_image = isset($args['bg']) ? $args['bg'] : get_template_directory_uri() . '../assets/images/background/2.jpg';
+$bg_image = isset($args['bg']) ? $args['bg'] : get_template_directory_uri() . '/assets/images/background/2.jpg';
 ?>
 <?php $lang = pll_current_language('slug'); ?>
 
