@@ -49,7 +49,7 @@ if ($related->have_posts()) :
 <?php get_footer(); ?>
 <style>
   .related-posts-section {
-    margin-top: 50px;
+    margin: 60px 0px;
 }
 .related-posts-section .related-title {
     font-size: 22px;
