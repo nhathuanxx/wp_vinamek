@@ -89,6 +89,8 @@ $table_prefix = 'wp_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
+define('WP_HOME', 'http://test.vinamek.com');
+define('WP_SITEURL', 'http://test.vinamek.com');
 // Tắt hiển thị lỗi ra trang, nhưng vẫn ghi log vào wp-content/debug.log
 define('WP_DEBUG', true);
 define('WP_DEBUG_LOG', true);
