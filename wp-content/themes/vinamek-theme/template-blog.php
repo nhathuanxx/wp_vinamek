@@ -79,7 +79,7 @@ $categories = get_terms(array(
                 <!-- Posts container -->
                 <div id="vinamek-posts-wrap" class="posts-grid">
                     <!-- initial skeletons -->
-                    <?php for ($i = 0; $i < 6; $i++): ?>
+                    <?php for ($i = 0; $i < 3; $i++): ?>
                         <div class="post-card skeleton">
                             <div class="post-thumb skeleton-thumb"></div>
                             <div class="post-body">
