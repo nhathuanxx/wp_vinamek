@@ -28,7 +28,7 @@
             <!-- Logo -->
             <div class="pull-left logo-box">
               <div class="logo">
-                <a href="<?php echo pll_home_url(); ?>">
+                <a href="<?php echo esc_url(pll_home_url(pll_current_language())); ?>">
                   <?php
                   // Lấy logo từ ACF Options Page
                   $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
@@ -201,7 +201,7 @@
 
           <!-- Logo -->
           <div class="logo pull-left">
-            <a href="<?php echo pll_home_url(); ?>" class="img-responsive">
+            <a href="<?php echo esc_url(pll_home_url(pll_current_language())); ?>" class="img-responsive">
               <?php
               // Lấy logo từ ACF Options Page
               $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
