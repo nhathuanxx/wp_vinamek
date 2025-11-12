@@ -24,19 +24,32 @@
 // define( 'DB_PASSWORD', '' );
 // define( 'DB_HOST', 'localhost' );
 
+// define( 'DB_NAME', 'wp_vinamek' );
+
+// /** MySQL database username */
+// define( 'DB_USER', 'onecetawin' );
+
+// /** MySQL database password */
+//  define( 'DB_PASSWORD', 'Onelog@@!59!!Onecetawin!!' );
+
+// /** MySQL hostname */
+// define( 'DB_HOST', '45.118.145.59:3388' );
 define( 'DB_NAME', 'wp_vinamek' );
 
-/** MySQL database username */
-define( 'DB_USER', 'onecetawin' );
+/** Database username */
+define( 'DB_USER', 'dhadmin' );
 
-/** MySQL database password */
- define( 'DB_PASSWORD', 'Onelog@@!59!!Onecetawin!!' );
+/** Database password */
+define( 'DB_PASSWORD', 'donghanh' );
 
-/** MySQL hostname */
-define( 'DB_HOST', '45.118.145.59:3388' );
+/** Database hostname */
+define( 'DB_HOST', 'dht-support-db.cgoi8l95wokk.ap-southeast-1.rds.amazonaws.com' );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', 'utf8mb4' );
+
+/** Database charset to use in creating database tables. */
+// define( 'DB_CHARSET', 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
