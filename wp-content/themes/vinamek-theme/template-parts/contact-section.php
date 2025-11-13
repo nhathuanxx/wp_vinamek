@@ -10,7 +10,7 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
 
 
 <section class="contact-section">
-    <div style="text-align:center; margin-bottom:24px;">
+    <div style="text-align:center; margin-bottom:40px;">
         <h2><?php echo ($lang === 'vi') ? 'Liên hệ với chúng tôi' : 'Contact us'; ?>
         </h2>
     </div>
@@ -133,5 +133,9 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
 
     .contact-form-wrapper .btn-submit:hover {
         background-color: #0056b3;
+    }
+
+    .contact-map iframe {
+        height: 100%;
     }
 </style>
