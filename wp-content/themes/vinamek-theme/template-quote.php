@@ -26,7 +26,7 @@ $current_url = get_permalink();
 
             <div style="flex:6;min-width:320px;">
                 <div class="quote-card" style="background:#fff;border-radius:10px;padding:24px;box-shadow:0 8px 30px rgba(19,181,234,0.08);position:relative;">
-                    <h4 style="margin:0 0 10px;color:#13b5ea;font-weight:700;line-height: inherit;"><?php echo $lang === 'en' ? 'Quick Quote' : 'Báo giá nhanh'; ?></h3>
+                    <h4 style="margin:0 0 10px;color:#13b5ea;font-weight:700;line-height: unset;margin:0"><?php echo $lang === 'en' ? 'Quick Quote' : 'Báo giá nhanh'; ?></h3>
 
                         <?php
                         // Get phone from ACF options (same field used in header)
@@ -39,7 +39,7 @@ $current_url = get_permalink();
 
                         // Render call button near form (desktop)
                         if ($tel_number) {
-                            echo '<div style="position:absolute;top:18px;right:18px;">';
+                            echo '<div style="position:absolute;top:24px;right:24px;">';
                             echo '<a class="vinamek-quick-call-desktop" href="tel:' . esc_attr($tel_number) . '" title="' . esc_attr($lang === 'en' ? 'Call for 24/7 quote' : 'Gọi hỗ trợ báo giá 24/24') . '">';
                             echo '<span style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#fff;background:#13b5ea;padding:8px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(19,181,234,0.12);">';
                             echo '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.11 1 19 19 0 0 1-8.63-3.11 19 19 0 0 1-6-6A19 19 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75c.12.81.35 1.6.67 2.34a1 1 0 0 1-.24 1.05L8.7 8.7a16 16 0 0 0 6 6l1.56-1.56a1 1 0 0 1 1.05-.24c.74.32 1.53.55 2.34.67a1 1 0 0 1 .75 1V21z" fill="currentColor"/></svg>';
@@ -335,8 +335,7 @@ $tel_number_mobile = $acf_phone_mobile ? preg_replace('/\D+/', '', $acf_phone_mo
 <style>
     .quote-form-wrapper {
         max-width: 600px;
-        margin: 0 auto;
-        margin-top: 40px;
+        margin: 28px 0px 0px 0px;
         /* padding: 25px; */
         background: #ffffff;
         /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
