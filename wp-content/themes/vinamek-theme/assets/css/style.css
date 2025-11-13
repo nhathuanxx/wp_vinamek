@@ -10182,8 +10182,8 @@ h3 a.banner-phone-number:hover {
     }
 }
 
-.contact-form-wrapper .contact-section .wpcf7-form .wpcf7-text,
-.contact-form-wrapper .contact-section .wpcf7-form .wpcf7-textarea {
+.contact-form-wrapper input.wpcf7-form-control,
+.contact-form-wrapper textarea.wpcf7-form-control {
     padding: 2px 10px !important;
     margin-bottom: 4px !important;
 }
