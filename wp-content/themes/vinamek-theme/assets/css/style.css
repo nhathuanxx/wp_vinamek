@@ -10093,9 +10093,39 @@ h3 a.banner-phone-number:hover {
 	color: #0ea3d1 !important;
 	/* Màu đậm hơn khi hover */
 }
-.nav-item.current-menu-parent>.nav-link.dropdown-toggle {
-	color: #13b5ea !important;
+/* CSS cho menu item active (bao gồm cả trang hiện tại và menu cha) */
+.nav-item.active > .nav-link,
+.nav-item.current-menu-item > .nav-link,
+.nav-item.current_page_item > .nav-link,
+.nav-item.current-menu-ancestor > .nav-link,
+.nav-item.current-menu-parent > .nav-link,
+.nav-item.current_page_parent > .nav-link,
+.nav-item.current_page_ancestor > .nav-link {
+  color: #13b5ea !important;
 }
-.nav-item.current-menu-parent>.nav-link.dropdown-toggle:hover {
-	color: #0ea3d1 !important;
+
+/* CSS cho menu cha có dropdown khi active */
+.nav-item.active > .nav-link.dropdown-toggle,
+.nav-item.current-menu-ancestor > .nav-link.dropdown-toggle,
+.nav-item.current-menu-parent > .nav-link.dropdown-toggle,
+.nav-item.current_page_parent > .nav-link.dropdown-toggle,
+.nav-item.current_page_ancestor > .nav-link.dropdown-toggle {
+  color: #13b5ea !important;
+}
+
+/* CSS cho dropdown menu active */
+.dropdown-menu .nav-item.active > .nav-link,
+.dropdown-menu .nav-item.current-menu-item > .nav-link,
+.dropdown-menu .nav-item.current-menu-ancestor > .nav-link {
+  color: #13b5ea !important;
+}
+
+/* Hover effect cho menu active */
+.nav-item.active > .nav-link:hover,
+.nav-item.current-menu-item > .nav-link:hover,
+.nav-item.current-menu-ancestor > .nav-link:hover,
+.nav-item.current-menu-parent > .nav-link:hover,
+.nav-item.active > .nav-link.dropdown-toggle:hover,
+.nav-item.current-menu-ancestor > .nav-link.dropdown-toggle:hover {
+  color: #0ea3d1 !important;
 }
