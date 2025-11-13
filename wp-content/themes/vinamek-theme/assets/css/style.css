@@ -10181,3 +10181,8 @@ h3 a.banner-phone-number:hover {
         margin-left: 16px; /* khoảng cách giữa 2 ô */
     }
 }
+
+.contact-form-wrapper input {
+    padding: 2px 10px;
+    margin-bottom: 4px;
+}
