@@ -1,16 +1,16 @@
-Header template for Vinamek Theme<?php
+<?php
 
-                                  /**
-                                   * Header template for Vinamek Theme
-                                   */
-                                  ?>
+/**
+ * Header template for Vinamek Theme
+ */
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.css" rel="stylesheet">
+<link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.css" rel="stylesheet">
   <?php wp_head(); ?>
 </head>
 
@@ -116,7 +116,7 @@ Header template for Vinamek Theme<?php
             <div class="nav-outer clearfix">
               <nav class="main-menu navbar-expand-md">
                 <div class="navbar-header">
-                  <?php
+                   <?php
                   $translations = pll_the_languages(array(
                     'raw' => 1,
                     'hide_if_no_translation' => 0, // hiển thị tất cả ngôn ngữ
@@ -175,19 +175,11 @@ Header template for Vinamek Theme<?php
                 <?php if (class_exists('WooCommerce')) : ?>
                   <div class="cart-box">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
-                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="20" cy="21" r="1" />
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                      </svg>
-                      <?php if ($count > 0) : ?>
-                        <span class="number"><?php echo esc_html($count); ?></span>
-                      <?php endif; ?>
+                      <span class="icon flaticon-shopping-cart-of-checkered-design"></span>
+                      <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                     </a>
                   </div>
                 <?php endif; ?>
-
 
               </nav>
             </div><!-- /.nav-outer -->

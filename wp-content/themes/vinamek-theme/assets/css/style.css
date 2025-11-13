@@ -1212,7 +1212,8 @@ img {
 	right: -15px;
 	top: -15px;
 	color: #13b5ea;
-	font-size: 18px;
+	padding:4px;
+	font-size: 14px;
 }
 
 .main-menu .navbar-collapse {
