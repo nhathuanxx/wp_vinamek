@@ -10132,42 +10132,48 @@ h3 a.banner-phone-number:hover {
 
 
 /* sửa giao diện form */
-/* Bao quanh form */
-.contact-form-wrapper,
-.contact-form-wrapper .wpcf7-form-control-wrap {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
+/* Thu gọn khoảng cách form CF7 */
+.contact-form-wrapper p {
+    margin: 0 0 10px; /* giảm khoảng cách giữa các input */
 }
 
 /* Label */
 .contact-form-wrapper label {
-  margin-bottom: 4px;
-  font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    font-size: 14px; /* chữ nhỏ hơn */
 }
 
 /* Input và textarea */
 .contact-form-wrapper input.wpcf7-form-control,
 .contact-form-wrapper textarea.wpcf7-form-control {
-  width: 100%;
-  padding: 6px 8px;
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
-/* Chia 2 ô trên 1 hàng */
-.contact-form-wrapper .half-width {
-  width: calc(50% - 8px);
-}
-
-.contact-form-wrapper .half-width:nth-child(2n) {
-  margin-left: 16px;
+    width: 100%;
+    padding: 6px 8px; /* input nhỏ hơn */
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 /* Submit button */
 .contact-form-wrapper input.wpcf7-submit {
-  padding: 8px 16px;
-  font-size: 14px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #00bfff; /* màu button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Tạo 2 ô trên 1 hàng (desktop) */
+@media (min-width: 768px) {
+    .contact-form-wrapper .wpcf7-form-control-wrap.your-name,
+    .contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
+        width: calc(50% - 8px);
+        display: inline-block;
+        vertical-align: top;
+    }
+    .contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
+        margin-left: 16px; /* khoảng cách giữa 2 ô */
+    }
 }
