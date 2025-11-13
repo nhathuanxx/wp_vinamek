@@ -183,15 +183,12 @@
                 <?php if (class_exists('WooCommerce')) : ?>
   <div class="cart-box-modern">
     <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="cart-link">
-      <!-- SVG icon giỏ hàng -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
-        <circle cx="9" cy="21" r="1" />
-        <circle cx="20" cy="21" r="1" />
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+      <!-- Icon SVG hiện đại, nhỏ gọn -->
+      <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
       </svg>
-
-      <!-- Badge số lượng -->
       <?php $count = WC()->cart->get_cart_contents_count(); ?>
       <?php if ($count > 0) : ?>
         <span class="cart-count"><?php echo esc_html($count); ?></span>
