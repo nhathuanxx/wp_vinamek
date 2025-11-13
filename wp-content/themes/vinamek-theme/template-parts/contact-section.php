@@ -10,7 +10,10 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
 
 
 <section class="contact-section">
-
+    <div style="text-align:center; margin-bottom:24px;">
+        <h2><?php echo ($lang === 'vi') ? 'Liên hệ với chúng tôi' : 'Contact us'; ?>
+        </h2>
+    </div>
     <div class="contact-row" style="display:flex; flex-wrap:wrap; gap:30px;">
 
         <div class="contact-map" style="flex:1; min-width:300px;">
@@ -21,8 +24,6 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
             </iframe>
         </div>
         <div class="vina-contact-form-wrapper" style="flex:1; min-width:300px;">
-            <h2><?php echo ($lang === 'vi') ? 'Liên hệ với chúng tôi' : 'Contact us'; ?>
-            </h2>
             <?php
             if ($lang === 'vi') {
                 echo do_shortcode('[contact-form-7 id="cbe6e5b" title="Liên hệ"]');
@@ -79,58 +80,58 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
 </style>
 <style>
     .contact-form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 25px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-}
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 25px;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
 
-.contact-form-wrapper label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333333;
-}
+    .contact-form-wrapper label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333333;
+    }
 
-.contact-form-wrapper .input-text,
-.contact-form-wrapper .textarea-text {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 18px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
+    .contact-form-wrapper .input-text,
+    .contact-form-wrapper .textarea-text {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-.contact-form-wrapper .input-text:focus,
-.contact-form-wrapper .textarea-text:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 8px rgba(0,123,255,0.2);
-  outline: none;
-}
+    .contact-form-wrapper .input-text:focus,
+    .contact-form-wrapper .textarea-text:focus {
+        border-color: #007BFF;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        outline: none;
+    }
 
-.contact-form-wrapper .textarea-text {
-  min-height: 140px;
-  resize: vertical;
-}
+    .contact-form-wrapper .textarea-text {
+        min-height: 140px;
+        resize: vertical;
+    }
 
-.contact-form-wrapper .btn-submit {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+    .contact-form-wrapper .btn-submit {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-.contact-form-wrapper .btn-submit:hover {
-  background-color: #0056b3;
-}
+    .contact-form-wrapper .btn-submit:hover {
+        background-color: #0056b3;
+    }
 </style>
