@@ -392,15 +392,15 @@ function vinamek_load_posts_ajax()
 //   echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
 //   echo '</div>';
 // }
-// 1. Ẩn giá mặc định
-add_filter('woocommerce_get_price_html', 'vinamek_custom_price_html', 100, 2);
-function vinamek_custom_price_html($price, $product) {
-  // Nếu sản phẩm có giá thì trả về giá, không thì trả về rỗng
-  if ($product->get_price()) {
-    return $price;
-  }
-  return '';
-}
+// // 1. Ẩn giá mặc định
+// add_filter('woocommerce_get_price_html', 'vinamek_custom_price_html', 100, 2);
+// function vinamek_custom_price_html($price, $product) {
+//   // Nếu sản phẩm có giá thì trả về giá, không thì trả về rỗng
+//   if ($product->get_price()) {
+//     return $price;
+//   }
+//   return '';
+// }
 
 // // 2. Ẩn nút "Thêm vào giỏ" mặc định
 // remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
