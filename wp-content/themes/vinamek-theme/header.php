@@ -176,7 +176,7 @@
                   <div class="cart-box">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                       <span class="icon flaticon-shopping-cart-of-checkered-design"></span>
-                      <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                      <div class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></div>
                     </a>
                   </div>
                 <?php endif; ?>
