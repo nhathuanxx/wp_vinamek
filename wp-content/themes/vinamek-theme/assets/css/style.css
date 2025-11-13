@@ -1241,7 +1241,7 @@ img {
 }
 
 .sticky-header .main-menu .navigation>li>a {
-	color: #444444 !important;
+	color: #444444 ;
 }
 
 .sticky-header .main-menu .navigation>li:hover>a,
