@@ -10072,8 +10072,3 @@ h3 a.banner-phone-number:hover {
             font-size: 16px;
         }
     }
-
-.navbar .nav-link.active,
-.navbar .nav-item.active > .nav-link {
-  color: #13b5ea !important;
-}

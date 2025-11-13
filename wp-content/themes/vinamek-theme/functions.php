@@ -110,19 +110,9 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
       if ($depth && in_array('menu-item-has-children', $classes)) {
         $classes[] = 'dropdown-submenu';
       }
-
-      // --- Thêm active cho item hiện tại và menu cha/ancestor ---
-      if (
-        in_array('current-menu-item', $classes) ||
-        in_array('current_page_item', $classes) ||
-        in_array('current-menu-parent', $classes) ||
-        in_array('current-menu-ancestor', $classes) ||
-        in_array('current-product_cat-parent', $classes) ||
-        in_array('current-product_cat-ancestor', $classes)
-      ) {
+      if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
         $classes[] = 'active';
       }
-
       $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
       $class_names = ' class="' . esc_attr($class_names) . '"';
       $output .= $indent . '<li' . $class_names . '>';
@@ -133,18 +123,6 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
       $atts['rel'] = !empty($item->xfn) ? $item->xfn : '';
       $atts['href'] = !empty($item->url) ? $item->url : '';
       $atts['class'] = 'nav-link';
-
-      // --- Thêm active cho <a> ---
-      if (
-        in_array('current-menu-item', $classes) ||
-        in_array('current_page_item', $classes) ||
-        in_array('current-menu-parent', $classes) ||
-        in_array('current-menu-ancestor', $classes) ||
-        in_array('current-product_cat-parent', $classes) ||
-        in_array('current-product_cat-ancestor', $classes)
-      ) {
-        $atts['class'] .= ' active';
-      }
 
       if (in_array('menu-item-has-children', $classes)) {
         $atts['class'] .= ' dropdown-toggle';
