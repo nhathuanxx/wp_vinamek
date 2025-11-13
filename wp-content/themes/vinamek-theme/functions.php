@@ -352,7 +352,7 @@ function vinamek_load_posts_ajax()
   ));
 }
 
-1. Ẩn giá sản phẩm trên trang shop và product
+// 1. Ẩn giá sản phẩm trên trang shop và product
 add_filter('woocommerce_get_price_html', '__return_empty_string');
 
 // 2. Ẩn nút "Thêm vào giỏ" mặc định
