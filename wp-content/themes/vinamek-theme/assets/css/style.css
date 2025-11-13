@@ -10093,3 +10093,9 @@ h3 a.banner-phone-number:hover {
 	color: #0ea3d1 !important;
 	/* Màu đậm hơn khi hover */
 }
+.current-menu-parent>.nav-link {
+	color: #13b5ea !important;
+}
+.current-menu-parent>.nav-link:hover {
+	color: #0ea3d1 !important;
+}
