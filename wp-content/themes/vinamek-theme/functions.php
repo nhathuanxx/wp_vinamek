@@ -110,17 +110,9 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
       if ($depth && in_array('menu-item-has-children', $classes)) {
         $classes[] = 'dropdown-submenu';
       }
-      
-      // Xử lý active cho menu item
       if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
         $classes[] = 'active';
       }
-      
-      // Thêm active cho menu cha khi menu con đang active
-      if (in_array('current-menu-ancestor', $classes) || in_array('current-menu-parent', $classes) || in_array('current_page_parent', $classes) || in_array('current_page_ancestor', $classes)) {
-        $classes[] = 'active';
-      }
-      
       $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
       $class_names = ' class="' . esc_attr($class_names) . '"';
       $output .= $indent . '<li' . $class_names . '>';
