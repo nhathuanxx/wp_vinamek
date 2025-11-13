@@ -112,21 +112,27 @@ $current_url = get_permalink();
                     $services = [
                         [
                             'en_title' => 'Electrical Systems',
-                            'vi_title' => 'Hệ thống điện',
+                            'vi_title' => 'Thiết kế hệ thống điện',
                             'en_desc' => 'Design, wiring, protection and testing for commercial & industrial installations.',
-                            'vi_desc' => 'Thiết kế, đi dây, bảo vệ và kiểm tra cho công trình thương mại và công nghiệp.'
+                            'vi_desc' => 'Thiết kế, đi dây, bảo vệ và kiểm tra cho công trình thương mại và công nghiệp.',
+                            'vi_link' => '/danh-muc-san-pham/thiet-ke-he-thong-dien/',
+                            'en_link' => '/en/danh-muc-san-pham/electrical-system-design/',
                         ],
                         [
-                            'en_title' => 'Lighting & Fixtures',
-                            'vi_title' => 'Chiếu sáng & thiết bị',
-                            'en_desc' => 'Indoor/outdoor lighting, energy-efficient solutions and emergency lighting.',
-                            'vi_desc' => 'Chiếu sáng trong nhà/ngoài trời, giải pháp tiết kiệm năng lượng và đèn khẩn cấp.'
+                            'en_title' => 'M&E Construction',
+                            'vi_title' => 'Thi công cơ điện',
+                            'en_desc' => 'Comprehensive mechanical and electrical installation services, including power, lighting, HVAC, and fire protection systems.',
+                            'vi_desc' => 'Thi công lắp đặt hệ thống cơ điện tổng thể, bao gồm điện, chiếu sáng, HVAC và hệ thống phòng cháy chữa cháy.',
+                            'vi_link' => '/danh-muc-san-pham/thi-cong-co-dien/',
+                            'en_link' => '/en/danh-muc-san-pham/mechanical-and-electrical-construction/',
                         ],
                         [
-                            'en_title' => 'Control Cabinets',
-                            'vi_title' => 'Tủ điều khiển',
-                            'en_desc' => 'Custom control & PCCC cabinets, assembly and wiring service.',
-                            'vi_desc' => 'Tủ điều khiển, tủ PCCC tùy chỉnh, lắp ráp và đi dây.'
+                            'en_title' => 'Industrial Control Cabinets',
+                            'vi_title' => 'Tủ điện công nghiệp',
+                            'en_desc' => 'Design and manufacture of industrial control cabinets for automation, power distribution, and fire protection systems.',
+                            'vi_desc' => 'Thiết kế và chế tạo tủ điện công nghiệp cho hệ thống tự động hóa, phân phối điện và phòng cháy chữa cháy.',
+                            'vi_link' => 'danh-muc-san-pham/tu-dien-cong-nghiep/',
+                            'en_link' => '/en/danh-muc-san-pham/industrial-electrical-cabinets/industrial-electrical-cabinet/',
                         ],
                     ];
 
@@ -138,7 +144,7 @@ $current_url = get_permalink();
                                 <?php echo esc_html($lang === 'en' ? $s['en_desc'] : $s['vi_desc']); ?>
                             </p>
                             <div style="margin-top:12px;">
-                                <a href="#" style="color:#13b5ea;font-weight:600;text-decoration:none;font-size:13px;"><?php echo $lang === 'en' ? 'Learn more' : 'Tìm hiểu thêm'; ?> →</a>
+                                <a href="<?php echo $lang === 'en' ? $s['en_link'] : $s['vi_link'] ?>" style="color:#13b5ea;font-weight:600;text-decoration:none;font-size:13px;"><?php echo $lang === 'en' ? 'Learn more' : 'Tìm hiểu thêm'; ?> →</a>
                             </div>
                         </article>
                     <?php
