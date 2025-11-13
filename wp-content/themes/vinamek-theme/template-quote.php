@@ -144,7 +144,9 @@ $current_url = get_permalink();
                                 <?php echo esc_html($lang === 'en' ? $s['en_desc'] : $s['vi_desc']); ?>
                             </p>
                             <div style="margin-top:12px;">
-                                <a href="<?php echo $lang === 'en' ? $s['en_link'] : $s['vi_link'] ?>" style="color:#13b5ea;font-weight:600;text-decoration:none;font-size:13px;"><?php echo $lang === 'en' ? 'Learn more' : 'Tìm hiểu thêm'; ?> →</a>
+                                <a href="<?php echo $lang === 'en'
+                                                ? home_url($s['en_link'])
+                                                : home_url($s['vi_link']); ?>" style="color:#13b5ea;font-weight:600;text-decoration:none;font-size:13px;"><?php echo $lang === 'en' ? 'Learn more' : 'Tìm hiểu thêm'; ?> →</a>
                             </div>
                         </article>
                     <?php
