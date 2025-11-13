@@ -10133,46 +10133,41 @@ h3 a.banner-phone-number:hover {
 
 /* sửa giao diện form */
 /* Bao quanh form */
-.contact-form-wrapper {
-  margin: 0 auto;   /* canh giữa */
-  font-size: 14px;  /* thu nhỏ chữ label và input */
-  gap: 10px;        /* khoảng cách giữa các phần tử */
+.contact-form-wrapper,
+.contact-form-wrapper .wpcf7-form-control-wrap {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;  /* để dễ chia 2 ô 1 hàng */
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
 }
 
 /* Label */
 .contact-form-wrapper label {
-  display: block;
-  margin-bottom: 4px;  /* thu ngắn khoảng cách với input */
+  margin-bottom: 4px;
   font-weight: 500;
 }
 
 /* Input và textarea */
-.contact-form-wrapper input.input-text,
-.contact-form-wrapper input[type="tel"],
-.contact-form-wrapper input[type="email"],
-.contact-form-wrapper textarea.textarea-text {
+.contact-form-wrapper input.wpcf7-form-control,
+.contact-form-wrapper textarea.wpcf7-form-control {
   width: 100%;
-  padding: 6px 8px;   /* thu nhỏ input */
-  margin-bottom: 10px;
+  padding: 6px 8px;
   font-size: 14px;
   box-sizing: border-box;
 }
 
 /* Chia 2 ô trên 1 hàng */
 .contact-form-wrapper .half-width {
-  width: calc(50% - 8px); /* 2 ô 1 hàng, trừ khoảng cách */
-  margin-right: 16px;     /* khoảng cách giữa 2 ô */
+  width: calc(50% - 8px);
 }
 
-/* Loại bỏ margin cuối hàng để không tràn */
 .contact-form-wrapper .half-width:nth-child(2n) {
-  margin-right: 0;
+  margin-left: 16px;
 }
 
 /* Submit button */
-.contact-form-wrapper .btn-submit {
+.contact-form-wrapper input.wpcf7-submit {
   padding: 8px 16px;
   font-size: 14px;
 }
