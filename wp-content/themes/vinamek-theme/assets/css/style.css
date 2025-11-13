@@ -1197,7 +1197,7 @@ img {
 	position: relative;
 	float: left;
 	font-size: 20px;
-	margin: 32px 0px;
+	margin: 28px 0px;
 	padding-left: 20px;
 	border-left: 1px solid #dde4db;
 }
@@ -10252,4 +10252,57 @@ h3 a.banner-phone-number:hover {
 }
 .contact-group-form-item p{
   width: calc(50% - 8px);
+}
+
+.cart-box-modern {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f3f4f6; /* nền xám nhạt */
+  color: #333;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.cart-link:hover {
+  background-color: #2563eb; /* xanh dương */
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.cart-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.cart-count {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #ef4444;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 9999px;
+  padding: 4px 6px;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  animation: popIn 0.3s ease;
+}
+
+/* hiệu ứng khi hover */
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
