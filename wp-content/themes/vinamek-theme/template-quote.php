@@ -155,7 +155,7 @@ $current_url = get_permalink();
                 </div>
             </div>
 
-            <aside class="vinamek-why-choose" style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 42px rgba(1,52,64,0.06);">
+            <aside class="vinamek-why-choose" style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 42px rgba(1,52,64,0.06);height:100%;">
                 <h4 style="margin-top:0;font-size:18px;color:#13b5ea;font-weight:700;"><?php echo $lang === 'en' ? 'Why choose us' : 'Tại sao chọn chúng tôi'; ?></h4>
                 <ul class="vinamek-why-list" style="margin:0;color:#444;padding-left:0;list-style:none;">
                     <li><?php echo $lang === 'en' ? 'Experienced technical team' : 'Đội ngũ kỹ thuật dày dặn'; ?></li>

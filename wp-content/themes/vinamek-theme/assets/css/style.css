@@ -10165,6 +10165,10 @@ h3 a.banner-phone-number:hover {
     cursor: pointer;
 }
 
+.contact-form-wrapper br {
+    display: none;
+}
+
 /* Tạo 2 ô trên 1 hàng (desktop) */
 @media (min-width: 768px) {
     .contact-form-wrapper .wpcf7-form-control-wrap.your-name,
