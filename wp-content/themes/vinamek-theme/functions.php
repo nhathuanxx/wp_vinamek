@@ -477,7 +477,6 @@ function vinamek_custom_product_gallery()
 
   .woocommerce-tabs {
     width: 100%;
-    order: 99;
     margin-top: 18px;
   }
 

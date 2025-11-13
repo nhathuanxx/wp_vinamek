@@ -9,7 +9,7 @@ get_header();
 $lang = function_exists('pll_current_language') ? pll_current_language('slug') : '';
 $current_url = get_permalink();
 ?>
-
+<?php get_template_part('template-parts/page', 'title'); ?>
 <section class="vinamek-quote-hero" style="background:#f6fbfe;padding:48px 0;border-bottom:1px solid #e9f6fb;">
     <div class="auto-container" style="max-width:1200px;margin:0 auto;padding:0 20px;">
         <div style="display:flex;flex-wrap:wrap;gap:40px;">
