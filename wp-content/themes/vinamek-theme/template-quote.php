@@ -12,8 +12,8 @@ $current_url = get_permalink();
 
 <section class="vinamek-quote-hero" style="background:#f6fbfe;padding:48px 0;border-bottom:1px solid #e9f6fb;">
     <div class="auto-container" style="max-width:1200px;margin:0 auto;padding:0 20px;">
-        <div style="display:flex;flex-wrap:wrap;gap:24px;">
-            <div style="flex:1;min-width:280px;">
+        <div style="display:flex;flex-wrap:wrap;gap:40px;">
+            <div style="flex:4;min-width:280px;">
                 <h1 style="color:#13b5ea;font-weight:700;margin:0 0 12px;font-size:32px;"><?php echo $lang === 'en' ? 'Request a Quote' : 'Yêu cầu báo giá'; ?></h1>
                 <p style="color:#333;margin:0 0 16px;font-size:16px;"><?php echo $lang === 'en' ? 'We provide consultation, design, installation and maintenance for electrical systems, lighting, control cabinets and custom metalworks.' : 'Chúng tôi tư vấn, thiết kế, lắp đặt, bảo trì hệ thống điện, chiếu sáng, vỏ tủ điện, tủ PCCC, sản xuất tủ điện, thang, máng cáp và cơ khí theo yêu cầu.'; ?></p>
                 <ul class="vinamek-hero-list" style="margin:0;color:#444;">
@@ -24,39 +24,38 @@ $current_url = get_permalink();
                 </ul>
             </div>
 
-            <div style="flex:1;min-width:320px;">
-                <div class="quote-card" style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 8px 30px rgba(19,181,234,0.08);position:relative;">
-                    <h4 style="margin:0 0 10px;color:#13b5ea;font-weight:700;"><?php echo $lang === 'en' ? 'Quick Quote' : 'Báo giá nhanh'; ?></h3>
+            <div style="flex:6;min-width:320px;">
+                <div class="quote-card" style="background:#fff;border-radius:10px;padding:24px;box-shadow:0 8px 30px rgba(19,181,234,0.08);position:relative;">
+                    <h4 style="margin:0 0 10px;color:#13b5ea;font-weight:700;line-height: inherit;"><?php echo $lang === 'en' ? 'Quick Quote' : 'Báo giá nhanh'; ?></h3>
 
-                    <?php
-                    // Get phone from ACF options (same field used in header)
-                    $acf_phone = function_exists('get_field') ? get_field('so_dien_thoai', 'option') : '';
-                    if (! $acf_phone) {
-                        // try alternative field used in header
-                        $acf_phone = function_exists('get_field') ? get_field('so_dien_thoai_2', 'option') : '';
-                    }
-                    $tel_number = $acf_phone ? preg_replace('/\D+/', '', $acf_phone) : '';
+                        <?php
+                        // Get phone from ACF options (same field used in header)
+                        $acf_phone = function_exists('get_field') ? get_field('so_dien_thoai', 'option') : '';
+                        if (! $acf_phone) {
+                            // try alternative field used in header
+                            $acf_phone = function_exists('get_field') ? get_field('so_dien_thoai_2', 'option') : '';
+                        }
+                        $tel_number = $acf_phone ? preg_replace('/\D+/', '', $acf_phone) : '';
 
-                    // Render call button near form (desktop)
-                    if ($tel_number) {
-                        echo '<div style="position:absolute;top:18px;right:18px;">';
-                        echo '<a class="vinamek-quick-call-desktop" href="tel:' . esc_attr($tel_number) . '" title="' . esc_attr($lang === 'en' ? 'Call for 24/7 quote' : 'Gọi hỗ trợ báo giá 24/24') . '">';
-                        echo '<span style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#fff;background:#13b5ea;padding:8px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(19,181,234,0.12);">';
-                        echo '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.11 1 19 19 0 0 1-8.63-3.11 19 19 0 0 1-6-6A19 19 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75c.12.81.35 1.6.67 2.34a1 1 0 0 1-.24 1.05L8.7 8.7a16 16 0 0 0 6 6l1.56-1.56a1 1 0 0 1 1.05-.24c.74.32 1.53.55 2.34.67a1 1 0 0 1 .75 1V21z" fill="currentColor"/></svg>';
-                        echo '<span style="font-size:13px;">' . esc_html($lang === 'en' ? 'Quick Quote 24/7' : 'Hỗ trợ báo giá 24/24') . '</span>';
-                        echo '</span>';
-                        echo '</a>';
-                        echo '</div>';
-                    }
+                        // Render call button near form (desktop)
+                        if ($tel_number) {
+                            echo '<div style="position:absolute;top:18px;right:18px;">';
+                            echo '<a class="vinamek-quick-call-desktop" href="tel:' . esc_attr($tel_number) . '" title="' . esc_attr($lang === 'en' ? 'Call for 24/7 quote' : 'Gọi hỗ trợ báo giá 24/24') . '">';
+                            echo '<span style="display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#fff;background:#13b5ea;padding:8px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(19,181,234,0.12);">';
+                            echo '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 16.92V21a1 1 0 0 1-1.11 1 19 19 0 0 1-8.63-3.11 19 19 0 0 1-6-6A19 19 0 0 1 2 3.11 1 1 0 0 1 3 2h4.09a1 1 0 0 1 1 .75c.12.81.35 1.6.67 2.34a1 1 0 0 1-.24 1.05L8.7 8.7a16 16 0 0 0 6 6l1.56-1.56a1 1 0 0 1 1.05-.24c.74.32 1.53.55 2.34.67a1 1 0 0 1 .75 1V21z" fill="currentColor"/></svg>';
+                            echo '<span style="font-size:13px;">' . esc_html($lang === 'en' ? 'Quick Quote 24/7' : 'Hỗ trợ báo giá 24/24') . '</span>';
+                            echo '</span>';
+                            echo '</a>';
+                            echo '</div>';
+                        }
 
-                    // Placeholder for Contact Form 7 (user will paste shortcode here)
-                    if ($lang === 'vi') {
-    echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="f0d0f39" title="Báo giá"]') . '</div>';
-} else {
-    echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="b08e691" title="Báo giá (en)"]') . '</div>';
-};
-                    ?>
-
+                        // Placeholder for Contact Form 7 (user will paste shortcode here)
+                        if ($lang === 'vi') {
+                            echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="f0d0f39" title="Báo giá"]') . '</div>';
+                        } else {
+                            echo '<div class="vinamek-quote-cf7">' . do_shortcode('[contact-form-7 id="b08e691" title="Báo giá (en)"]') . '</div>';
+                        };
+                        ?>
                 </div>
             </div>
         </div>
@@ -65,12 +64,38 @@ $current_url = get_permalink();
 
 <style>
     /* Hero list: bold items with primary-color bullet */
-    .vinamek-hero-list { margin:0; padding-left:0; list-style:none; }
-    .vinamek-hero-list li { position:relative; padding-left:34px; margin-bottom:10px; font-weight:700; color:#333; }
-    .vinamek-hero-list li:before { content: "\2022"; position:absolute; left:0; top:0; color:#13b5ea; font-size:20px; line-height:1; }
+    .vinamek-hero-list {
+        margin: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .vinamek-hero-list li {
+        position: relative;
+        padding-left: 34px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .vinamek-hero-list li:before {
+        content: "\2022";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #13b5ea;
+        font-size: 20px;
+        line-height: 1;
+    }
+
     @media (max-width:480px) {
-        .vinamek-hero-list li { padding-left:26px; }
-        .vinamek-hero-list li:before { font-size:18px; }
+        .vinamek-hero-list li {
+            padding-left: 26px;
+        }
+
+        .vinamek-hero-list li:before {
+            font-size: 18px;
+        }
     }
 </style>
 
@@ -160,19 +185,48 @@ $current_url = get_permalink();
         .vinamek-services-section h2,
         .vinamek-services-section h4 {
             color: #13b5ea;
-            font-weight:700;
+            font-weight: 700;
         }
 
         /* Make sure aside list shows bullets and spacing */
-        .vinamek-why-choose ul { list-style: disc; padding-left: 20px; }
+        .vinamek-why-choose ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
 
         /* Styled bullets for aside list (match hero) */
-        .vinamek-why-list { margin:0; padding-left:0; list-style:none; }
-        .vinamek-why-list li { position:relative; padding-left:34px; margin-bottom:10px; font-weight:700; color:#333; }
-        .vinamek-why-list li:before { content: "\2022"; position:absolute; left:0; top:0; color:#13b5ea; font-size:18px; line-height:1; }
+        .vinamek-why-list {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .vinamek-why-list li {
+            position: relative;
+            padding-left: 34px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .vinamek-why-list li:before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #13b5ea;
+            font-size: 18px;
+            line-height: 1;
+        }
+
         @media (max-width:480px) {
-            .vinamek-why-list li { padding-left:26px; }
-            .vinamek-why-list li:before { font-size:16px; }
+            .vinamek-why-list li {
+                padding-left: 26px;
+            }
+
+            .vinamek-why-list li:before {
+                font-size: 16px;
+            }
         }
 
         /* Responsive: stack grid into single column on small screens */
@@ -280,61 +334,61 @@ $tel_number_mobile = $acf_phone_mobile ? preg_replace('/\D+/', '', $acf_phone_mo
 
 <style>
     .quote-form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 24px;
-  padding: 25px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-}
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 40px;
+        /* padding: 25px; */
+        background: #ffffff;
+        /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+        border-radius: 12px;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
 
-.quote-form-wrapper label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333333;
-}
+    .quote-form-wrapper label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333333;
+    }
 
-.quote-form-wrapper .input-text,
-.quote-form-wrapper .textarea-text {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 18px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
+    .quote-form-wrapper .input-text,
+    .quote-form-wrapper .textarea-text {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-.quote-form-wrapper .input-text:focus,
-.quote-form-wrapper .textarea-text:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 8px rgba(40,167,69,0.2);
-  outline: none;
-}
+    .quote-form-wrapper .input-text:focus,
+    .quote-form-wrapper .textarea-text:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+        outline: none;
+    }
 
-.quote-form-wrapper .textarea-text {
-  min-height: 140px;
-  resize: vertical;
-}
+    .quote-form-wrapper .textarea-text {
+        min-height: 140px;
+        resize: vertical;
+    }
 
-.quote-form-wrapper .btn-submit {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+    .quote-form-wrapper .btn-submit {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-.quote-form-wrapper .btn-submit:hover {
-  background-color: #218838;
-}
+    .quote-form-wrapper .btn-submit:hover {
+        background-color: #218838;
+    }
 </style>
 
 <?php if ($tel_number_mobile): ?>

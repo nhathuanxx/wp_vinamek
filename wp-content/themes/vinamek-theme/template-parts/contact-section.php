@@ -45,7 +45,7 @@ $google_maps_url = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.2
 
 <style>
     .contact-section h2 {
-        margin-bottom: 20px;
+        margin-bottom: 28px;
     }
 
     .contact-section .wpcf7-form input,
