@@ -352,67 +352,67 @@ function vinamek_load_posts_ajax()
   ));
 }
 
-// 1. Ẩn giá sản phẩm trên trang shop và product
-// add_filter('woocommerce_get_price_html', '__return_empty_string');
+1. Ẩn giá sản phẩm trên trang shop và product
+add_filter('woocommerce_get_price_html', '__return_empty_string');
 
-// // 2. Ẩn nút "Thêm vào giỏ" mặc định
-// remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
-// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+// 2. Ẩn nút "Thêm vào giỏ" mặc định
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
 
-// // 3. Thêm nút liên hệ + mô tả dưới giá
-// add_action('woocommerce_after_shop_loop_item', 'custom_contact_button', 20);
-// add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
+// 3. Thêm nút liên hệ + mô tả dưới giá
+add_action('woocommerce_after_shop_loop_item', 'custom_contact_button', 20);
+add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
 
 // giá mới
 
 // Thêm nút liên hệ + giá hiển thị thông minh
-add_action('woocommerce_after_shop_loop_item', 'vinamek_contact_and_price', 20);
-add_action('woocommerce_single_product_summary', 'vinamek_contact_and_price', 31);
+// add_action('woocommerce_after_shop_loop_item', 'vinamek_contact_and_price', 20);
+// add_action('woocommerce_single_product_summary', 'vinamek_contact_and_price', 31);
 
-function vinamek_contact_and_price() {
-    global $product;
+// function vinamek_contact_and_price() {
+//     global $product;
 
-    if (!$product) return;
+//     if (!$product) return;
 
-    // Ngôn ngữ hiện tại
-    $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
-    $contact_label = ($lang === 'en') ? 'Contact' : 'Liên hệ';
-    $contact_desc  = ($lang === 'en') ? 'Contact us for detailed pricing' : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
+//     // Ngôn ngữ hiện tại
+//     $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
+//     $contact_label = ($lang === 'en') ? 'Contact' : 'Liên hệ';
+//     $contact_desc  = ($lang === 'en') ? 'Contact us for detailed pricing' : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
 
-    echo '<div class="vinamek-contact-wrapper" style="margin-top:10px;">';
+//     echo '<div class="vinamek-contact-wrapper" style="margin-top:10px;">';
 
-    // ==== Hiển thị giá nếu có ====
-    if ($product->get_price()) {
-        $price_html = '';
-        if ($product->is_on_sale()) {
-            $regular_price = wc_price($product->get_regular_price());
-            $sale_price    = wc_price($product->get_sale_price());
-            $price_html = '<span class="vinamek-price-regular" style="text-decoration:line-through; color:#999; margin-right:5px;">' . $regular_price . '</span>';
-            $price_html .= '<span class="vinamek-price-sale" style="color:#ff2f2f; font-weight:bold;">' . $sale_price . '</span>';
-        } else {
-            $price_html = '<span class="vinamek-price" style="font-weight:bold;">' . $product->get_price_html() . '</span>';
-        }
+//     // ==== Hiển thị giá nếu có ====
+//     if ($product->get_price()) {
+//         $price_html = '';
+//         if ($product->is_on_sale()) {
+//             $regular_price = wc_price($product->get_regular_price());
+//             $sale_price    = wc_price($product->get_sale_price());
+//             $price_html = '<span class="vinamek-price-regular" style="text-decoration:line-through; color:#999; margin-right:5px;">' . $regular_price . '</span>';
+//             $price_html .= '<span class="vinamek-price-sale" style="color:#ff2f2f; font-weight:bold;">' . $sale_price . '</span>';
+//         } else {
+//             $price_html = '<span class="vinamek-price" style="font-weight:bold;">' . $product->get_price_html() . '</span>';
+//         }
 
-        echo '<div class="vinamek-price-wrapper" style="margin-bottom:8px;">' . $price_html . '</div>';
-    }
+//         echo '<div class="vinamek-price-wrapper" style="margin-bottom:8px;">' . $price_html . '</div>';
+//     }
 
-    // ==== Nút liên hệ ====
-    echo '<a href="tel:0353226333" class="vinamek-contact-button" style="
-        display:inline-block;
-        background-color:#ff0000; 
-        color:#ffffff; 
-        padding:10px 20px; 
-        text-decoration:none;
-        font-weight:bold;
-        border-radius:4px;
-        margin-bottom:5px;
-    ">' . esc_html($contact_label) . '</a>';
+//     // ==== Nút liên hệ ====
+//     echo '<a href="tel:0353226333" class="vinamek-contact-button" style="
+//         display:inline-block;
+//         background-color:#ff0000; 
+//         color:#ffffff; 
+//         padding:10px 20px; 
+//         text-decoration:none;
+//         font-weight:bold;
+//         border-radius:4px;
+//         margin-bottom:5px;
+//     ">' . esc_html($contact_label) . '</a>';
 
-    // ==== Mô tả dưới nút liên hệ ====
-    echo '<p class="vinamek-contact-desc" style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($contact_desc) . '</p>';
+//     // ==== Mô tả dưới nút liên hệ ====
+//     echo '<p class="vinamek-contact-desc" style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($contact_desc) . '</p>';
 
-    echo '</div>';
-}
+//     echo '</div>';
+// }
 
 
 //giao diện chi tiết sản phẩm sau khi custom
