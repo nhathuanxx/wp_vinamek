@@ -172,14 +172,14 @@
                 </div>
 
                 <!-- Cart Box -->
-                <!-- <?php if (class_exists('WooCommerce')) : ?>
+                <?php if (class_exists('WooCommerce')) : ?>
                   <div class="cart-box">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                       <span class="icon flaticon-shopping-cart-of-checkered-design"></span>
                       <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                     </a>
                   </div>
-                <?php endif; ?> -->
+                <?php endif; ?>
 
               </nav>
             </div><!-- /.nav-outer -->
