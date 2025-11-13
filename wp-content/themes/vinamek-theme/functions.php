@@ -402,56 +402,56 @@ function vinamek_custom_price_html($price, $product) {
   return '';
 }
 
-// 2. Ẩn nút "Thêm vào giỏ" mặc định
-remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
-remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+// // 2. Ẩn nút "Thêm vào giỏ" mặc định
+// remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+// remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
 
-// 3. Thêm nút liên hệ (hiển thị sau giá)
-add_action('woocommerce_after_shop_loop_item', 'custom_contact_button', 20);
-add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
+// // 3. Thêm nút liên hệ (hiển thị sau giá)
+// add_action('woocommerce_after_shop_loop_item', 'custom_contact_button', 20);
+// add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
 
-function custom_contact_button()
-{
-  global $product;
+// function custom_contact_button()
+// {
+//   global $product;
   
-  // Lấy ngôn ngữ hiện tại từ Polylang
-  $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
+//   // Lấy ngôn ngữ hiện tại từ Polylang
+//   $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
   
-  // Kiểm tra xem sản phẩm có giá không
-  $has_price = $product->get_price() ? true : false;
+//   // Kiểm tra xem sản phẩm có giá không
+//   $has_price = $product->get_price() ? true : false;
   
-  // Text mô tả
-  $description = ($lang == 'en')
-    ? 'Contact us for detailed pricing'
-    : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
+//   // Text mô tả
+//   $description = ($lang == 'en')
+//     ? 'Contact us for detailed pricing'
+//     : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
 
-  echo '<div class="custom-contact-wrapper" style="margin-top:10px;">';
+//   echo '<div class="custom-contact-wrapper" style="margin-top:10px;">';
   
-  // Nếu có giá, hiển thị giá trước
-  if ($has_price) {
-    echo '<div class="product-price" style="margin-bottom:10px; font-size:18px; font-weight:bold; color:#333;">';
-    echo $product->get_price_html();
-    echo '</div>';
-  }
+//   // Nếu có giá, hiển thị giá trước
+//   if ($has_price) {
+//     echo '<div class="product-price" style="margin-bottom:10px; font-size:18px; font-weight:bold; color:#333;">';
+//     echo $product->get_price_html();
+//     echo '</div>';
+//   }
   
-  // Hiển thị nút liên hệ
-  echo '<a href="tel:0353226333" class="custom-contact-button" style="
-        display:inline-block;
-        background-color:#ff0000; 
-        color:#ffffff; 
-        padding:10px 20px; 
-        text-decoration:none;
-        font-weight:bold;
-        border-radius:4px;
-    ">' . ($lang == 'en' ? 'Contact' : 'Liên hệ') . '</a>';
+//   // Hiển thị nút liên hệ
+//   echo '<a href="tel:0353226333" class="custom-contact-button" style="
+//         display:inline-block;
+//         background-color:#ff0000; 
+//         color:#ffffff; 
+//         padding:10px 20px; 
+//         text-decoration:none;
+//         font-weight:bold;
+//         border-radius:4px;
+//     ">' . ($lang == 'en' ? 'Contact' : 'Liên hệ') . '</a>';
 
-  // Dòng mô tả (chỉ hiện khi không có giá)
-  if (!$has_price) {
-    echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
-  }
+//   // Dòng mô tả (chỉ hiện khi không có giá)
+//   if (!$has_price) {
+//     echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
+//   }
   
-  echo '</div>';
-}
+//   echo '</div>';
+// }
 
 add_action('after_setup_theme', function () {
   add_theme_support('woocommerce');
