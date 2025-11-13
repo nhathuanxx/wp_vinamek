@@ -110,7 +110,9 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
       if ($depth && in_array('menu-item-has-children', $classes)) {
         $classes[] = 'dropdown-submenu';
       }
-
+      if (in_array('current-menu-item', $classes) || in_array('current_page_item', $classes)) {
+        $classes[] = 'active';
+      }
       $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
       $class_names = ' class="' . esc_attr($class_names) . '"';
       $output .= $indent . '<li' . $class_names . '>';
@@ -217,135 +219,137 @@ if (function_exists('acf_add_options_page')) {
   ));
 }
 add_filter('woocommerce_show_page_title', '__return_false');
-add_filter( 'get_the_archive_title', function ($title) {
-    if ( is_category() ) {
-        $title = single_cat_title( '', false ); // chỉ lấy tên category
-    } elseif ( is_tag() ) {
-        $title = single_tag_title( '', false );
-    } elseif ( is_tax() ) {
-        $title = single_term_title( '', false );
-    }
-    return $title;
+add_filter('get_the_archive_title', function ($title) {
+  if (is_category()) {
+    $title = single_cat_title('', false); // chỉ lấy tên category
+  } elseif (is_tag()) {
+    $title = single_tag_title('', false);
+  } elseif (is_tax()) {
+    $title = single_term_title('', false);
+  }
+  return $title;
 });
 
 
 
 
-add_action( 'wp_enqueue_scripts', 'vinamek_blog_enqueue_assets' );
-function vinamek_blog_enqueue_assets() {
-  if ( is_page_template( array( 'template-blog-ajax.php', 'template-blog.php' ) ) ) {
-        // wp_enqueue_style( 'vinamek-blog-style', get_template_directory_uri() . '/assets/css/vinamek-blog.css', array(), '1.0' );
-        wp_enqueue_script( 'vinamek-blog-js', get_template_directory_uri() . '/assets/js/vinamek-blog.js', array('jquery'), '1.0', true );
+add_action('wp_enqueue_scripts', 'vinamek_blog_enqueue_assets');
+function vinamek_blog_enqueue_assets()
+{
+  if (is_page_template(array('template-blog-ajax.php', 'template-blog.php'))) {
+    // wp_enqueue_style( 'vinamek-blog-style', get_template_directory_uri() . '/assets/css/vinamek-blog.css', array(), '1.0' );
+    wp_enqueue_script('vinamek-blog-js', get_template_directory_uri() . '/assets/js/vinamek-blog.js', array('jquery'), '1.0', true);
 
-        // Localize data for AJAX
-        $ajax_data = array(
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce'    => wp_create_nonce( 'vinamek_blog_nonce' ),
-            'posts_per_page' => 10,
-            'lang' => function_exists('pll_current_language') ? pll_current_language('slug') : ''
-        );
-        wp_localize_script( 'vinamek-blog-js', 'vinamekBlog', $ajax_data );
-    }
+    // Localize data for AJAX
+    $ajax_data = array(
+      'ajax_url' => admin_url('admin-ajax.php'),
+      'nonce'    => wp_create_nonce('vinamek_blog_nonce'),
+      'posts_per_page' => 10,
+      'lang' => function_exists('pll_current_language') ? pll_current_language('slug') : ''
+    );
+    wp_localize_script('vinamek-blog-js', 'vinamekBlog', $ajax_data);
+  }
 }
 
 /**
  * AJAX handler - returns posts HTML + pagination HTML
  */
-add_action( 'wp_ajax_vinamek_load_posts', 'vinamek_load_posts_ajax' );
-add_action( 'wp_ajax_nopriv_vinamek_load_posts', 'vinamek_load_posts_ajax' );
+add_action('wp_ajax_vinamek_load_posts', 'vinamek_load_posts_ajax');
+add_action('wp_ajax_nopriv_vinamek_load_posts', 'vinamek_load_posts_ajax');
 
-function vinamek_load_posts_ajax() {
-    check_ajax_referer( 'vinamek_blog_nonce', 'nonce' );
+function vinamek_load_posts_ajax()
+{
+  check_ajax_referer('vinamek_blog_nonce', 'nonce');
 
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-    $category = isset($_POST['category']) && $_POST['category'] !== '' ? sanitize_text_field( $_POST['category'] ) : '';
-    $search = isset($_POST['s']) ? sanitize_text_field( $_POST['s'] ) : '';
-    $posts_per_page = isset($_POST['ppp']) ? intval($_POST['ppp']) : 10;
-    $lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+  $category = isset($_POST['category']) && $_POST['category'] !== '' ? sanitize_text_field($_POST['category']) : '';
+  $search = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
+  $posts_per_page = isset($_POST['ppp']) ? intval($_POST['ppp']) : 10;
+  $lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
 
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => $posts_per_page,
-        'paged' => $paged,
-        's' => $search,
-    );
+  $args = array(
+    'post_type' => 'post',
+    'posts_per_page' => $posts_per_page,
+    'paged' => $paged,
+    's' => $search,
+  );
 
-    if ( $category !== '' ) {
-        $args['category_name'] = $category;
-    }
+  if ($category !== '') {
+    $args['category_name'] = $category;
+  }
 
-    // Polylang support
-    if ( $lang && function_exists('pll_current_language') ) {
-        $args['lang'] = $lang;
-    }
+  // Polylang support
+  if ($lang && function_exists('pll_current_language')) {
+    $args['lang'] = $lang;
+  }
 
-    $q = new WP_Query( $args );
+  $q = new WP_Query($args);
 
-    ob_start();
+  ob_start();
 
-    if ( $q->have_posts() ) {
-        while ( $q->have_posts() ) {
-            $q->the_post();
-            ?>
-            <article id="post-<?php the_ID(); ?>" class="post-card ajax-post-card">
-              <a class="post-link" href="<?php the_permalink(); ?>">
-                <div class="post-thumb">
-                  <?php
-                  if ( has_post_thumbnail() ) {
-                      the_post_thumbnail( 'medium' );
-                  } else {
-                      echo '<img src="' . get_template_directory_uri() . '/assets/img/placeholder-600x400.png" alt="' . esc_attr(get_the_title()) . '">';
-                  }
-                  ?>
-                </div>
-                <div class="post-body">
-                  <h3 class="post-title"><?php the_title(); ?></h3>
-                  <div class="post-meta">
-                    <span class="post-date"><?php echo get_the_date( 'd M, Y' ); ?></span>
-                  </div>
-                  <div class="post-excerpt">
-                    <?php
-                      if ( has_excerpt() ) {
-                        echo wp_kses_post( wp_trim_words( get_the_excerpt(), 30, '...' ) );
-                      } else {
-                        echo wp_kses_post( wp_trim_words( get_the_content(), 30, '...' ) );
-                      }
-                    ?>
-                  </div>
-                </div>
-              </a>
-            </article>
+  if ($q->have_posts()) {
+    while ($q->have_posts()) {
+      $q->the_post();
+?>
+      <article id="post-<?php the_ID(); ?>" class="post-card ajax-post-card">
+        <a class="post-link" href="<?php the_permalink(); ?>">
+          <div class="post-thumb">
             <?php
-        }
-        wp_reset_postdata();
-    } else {
-        echo '<p class="no-posts">Không có bài viết.</p>';
+            if (has_post_thumbnail()) {
+              the_post_thumbnail('medium');
+            } else {
+              echo '<img src="' . get_template_directory_uri() . '/assets/img/placeholder-600x400.png" alt="' . esc_attr(get_the_title()) . '">';
+            }
+            ?>
+          </div>
+          <div class="post-body">
+            <h3 class="post-title"><?php the_title(); ?></h3>
+            <div class="post-meta">
+              <span class="post-date"><?php echo get_the_date('d M, Y'); ?></span>
+            </div>
+            <div class="post-excerpt">
+              <?php
+              if (has_excerpt()) {
+                echo wp_kses_post(wp_trim_words(get_the_excerpt(), 30, '...'));
+              } else {
+                echo wp_kses_post(wp_trim_words(get_the_content(), 30, '...'));
+              }
+              ?>
+            </div>
+          </div>
+        </a>
+      </article>
+<?php
     }
+    wp_reset_postdata();
+  } else {
+    echo '<p class="no-posts">Không có bài viết.</p>';
+  }
 
-    $posts_html = ob_get_clean();
+  $posts_html = ob_get_clean();
 
-    // pagination
+  // pagination
   $total_pages = $q->max_num_pages;
   $pagination_html = '';
 
-  if ( $total_pages > 1 ) {
+  if ($total_pages > 1) {
     $big = 999999999;
-    $pagination_html = paginate_links( array(
-      'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+    $pagination_html = paginate_links(array(
+      'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
       'format' => '?paged=%#%',
       'current' => max(1, $paged),
       'total' => $total_pages,
       'prev_text' => '&laquo; Trước',
       'next_text' => 'Sau &raquo;',
       'type' => 'list',
-    ) );
+    ));
   }
 
-    wp_send_json_success( array(
-        'posts' => $posts_html,
-        'pagination' => $pagination_html,
-        'found' => $q->found_posts,
-    ) );
+  wp_send_json_success(array(
+    'posts' => $posts_html,
+    'pagination' => $pagination_html,
+    'found' => $q->found_posts,
+  ));
 }
 
 // 1. Ẩn giá sản phẩm trên trang shop và product
@@ -361,16 +365,17 @@ add_action('woocommerce_single_product_summary', 'custom_contact_button', 31);
 
 
 //giao diện chi tiết sản phẩm sau khi custom
-function custom_contact_button() {
-    // Lấy ngôn ngữ hiện tại từ Polylang
-    $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
+function custom_contact_button()
+{
+  // Lấy ngôn ngữ hiện tại từ Polylang
+  $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
 
-    $description = ($lang == 'en') 
-        ? 'Contact us for detailed pricing'
-        : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
+  $description = ($lang == 'en')
+    ? 'Contact us for detailed pricing'
+    : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
 
-    echo '<div class="custom-contact-wrapper" style="margin-top:10px;">';
-    echo '<a href="tel:0353226333" class="custom-contact-button" style="
+  echo '<div class="custom-contact-wrapper" style="margin-top:10px;">';
+  echo '<a href="tel:0353226333" class="custom-contact-button" style="
         display:inline-block;
         background-color:#ff0000; 
         color:#ffffff; 
@@ -378,25 +383,26 @@ function custom_contact_button() {
         text-decoration:none;
         font-weight:bold;
         border-radius:4px;
-    ">'. ($lang == 'en' ? 'Contact' : 'Liên hệ') .'</a>';
+    ">' . ($lang == 'en' ? 'Contact' : 'Liên hệ') . '</a>';
 
-    // Dòng mô tả in nghiêng, màu xám nhẹ, cách nút 5px
-    echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
-    echo '</div>';
+  // Dòng mô tả in nghiêng, màu xám nhẹ, cách nút 5px
+  echo '<p style="margin-top:5px; font-style:italic; color:#666666;">' . esc_html($description) . '</p>';
+  echo '</div>';
 }
 
-add_action('after_setup_theme', function() {
-    add_theme_support('woocommerce');
-    add_theme_support('wc-product-gallery-zoom');       // zoom khi hover
-    add_theme_support('wc-product-gallery-lightbox');  // lightbox khi click
-    add_theme_support('wc-product-gallery-slider');    // slider cho nhiều ảnh
+add_action('after_setup_theme', function () {
+  add_theme_support('woocommerce');
+  add_theme_support('wc-product-gallery-zoom');       // zoom khi hover
+  add_theme_support('wc-product-gallery-lightbox');  // lightbox khi click
+  add_theme_support('wc-product-gallery-slider');    // slider cho nhiều ảnh
 });
-function vinamek_enqueue_wc_gallery_assets() {
-    if ( is_product() ) {
-        // Load script gallery WC
-        wp_enqueue_script('wc-single-product'); // gallery, slider
-        wp_enqueue_script('zoom');              // zoom nếu bật
-    }
+function vinamek_enqueue_wc_gallery_assets()
+{
+  if (is_product()) {
+    // Load script gallery WC
+    wp_enqueue_script('wc-single-product'); // gallery, slider
+    wp_enqueue_script('zoom');              // zoom nếu bật
+  }
 }
 add_action('wp_enqueue_scripts', 'vinamek_enqueue_wc_gallery_assets', 99);
 
@@ -407,7 +413,8 @@ remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_pro
 // 2. Thêm gallery custom
 add_action('woocommerce_before_single_product_summary', 'vinamek_custom_product_gallery', 20);
 
-function vinamek_custom_product_gallery() {
+function vinamek_custom_product_gallery()
+{
   global $product;
   if (!$product) return;
 
@@ -428,7 +435,7 @@ function vinamek_custom_product_gallery() {
   // Ảnh chính
   $first_image = $image_ids[0] ? wp_get_attachment_url($image_ids[0]) : wc_placeholder_img_src();
   echo '<div class="vinamek-main-image">';
-  echo '<img id="vinamek-main-img" src="'.esc_url($first_image).'" alt="'.esc_attr(get_the_title()).'">';
+  echo '<img id="vinamek-main-img" src="' . esc_url($first_image) . '" alt="' . esc_attr(get_the_title()) . '">';
   echo '</div>';
 
   // Thumbnails (ẩn prev/next)
@@ -437,7 +444,7 @@ function vinamek_custom_product_gallery() {
     echo '<div class="swiper-wrapper">';
     foreach ($image_ids as $index => $id) {
       $thumb_url = $id ? wp_get_attachment_url($id) : wc_placeholder_img_src();
-      echo '<div class="swiper-slide"><img data-index="'.$index.'" src="'.esc_url($thumb_url).'" alt="'.esc_attr(get_the_title()).'" class="vinamek-thumb"></div>';
+      echo '<div class="swiper-slide"><img data-index="' . $index . '" src="' . esc_url($thumb_url) . '" alt="' . esc_attr(get_the_title()) . '" class="vinamek-thumb"></div>';
     }
     echo '</div>'; // .swiper-wrapper
     echo '</div>'; // .vinamek-thumbnails
