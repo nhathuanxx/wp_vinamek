@@ -721,3 +721,83 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_re
 
 // 2. Thêm lại related products với priority cao hơn (sau tabs)
 add_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 50);
+
+
+
+// ===================================================
+// Custom giá & nút liên hệ cho sản phẩm WooCommerce
+// ===================================================
+
+// 1. Kiểm tra sản phẩm có giá không
+function vinamek_product_has_price($product) {
+  $price = $product->get_price();
+  return !empty($price) && $price > 0;
+}
+
+// 2. Ẩn nút "Thêm vào giỏ" mặc định cho sản phẩm không có giá
+add_filter('woocommerce_is_purchasable', 'vinamek_hide_add_to_cart_for_no_price', 10, 2);
+function vinamek_hide_add_to_cart_for_no_price($purchasable, $product) {
+  if (!vinamek_product_has_price($product)) {
+    return false;
+  }
+  return $purchasable;
+}
+
+// 3. Thêm nút liên hệ cho sản phẩm không có giá
+// Trang shop/archive
+add_action('woocommerce_after_shop_loop_item', 'vinamek_custom_contact_button_loop', 10);
+// Trang chi tiết sản phẩm
+add_action('woocommerce_single_product_summary', 'vinamek_custom_contact_button_single', 30);
+
+function vinamek_custom_contact_button_loop() {
+  global $product;
+  if (!vinamek_product_has_price($product)) {
+    vinamek_render_contact_button();
+  }
+}
+
+function vinamek_custom_contact_button_single() {
+  global $product;
+  if (!vinamek_product_has_price($product)) {
+    vinamek_render_contact_button();
+  }
+}
+
+// 4. Render nút liên hệ
+function vinamek_render_contact_button() {
+  $lang = function_exists('pll_current_language') ? pll_current_language() : 'vi';
+  
+  $button_text = ($lang == 'en') ? 'Contact' : 'Liên hệ';
+  $description = ($lang == 'en') 
+    ? 'Contact us for detailed pricing' 
+    : 'Liên hệ với chúng tôi để nhận báo giá chi tiết';
+  
+  echo '<div class="custom-contact-wrapper" style="margin-top:10px;">';
+  echo '<a href="tel:0353226333" class="custom-contact-button" style="
+        display:inline-block;
+        background-color:#ff0000; 
+        color:#ffffff; 
+        padding:10px 20px; 
+        text-decoration:none;
+        font-weight:bold;
+        border-radius:4px;
+        transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor=\'#cc0000\'" onmouseout="this.style.backgroundColor=\'#ff0000\'">' 
+    . esc_html($button_text) . 
+  '</a>';
+  
+  echo '<p style="margin-top:5px; font-style:italic; color:#666666; font-size:14px;">' 
+    . esc_html($description) . 
+  '</p>';
+  
+  echo '</div>';
+}
+
+// 5. Custom text giá cho sản phẩm không có giá (optional - hiển thị text thay vì để trống)
+add_filter('woocommerce_get_price_html', 'vinamek_custom_empty_price_html', 100, 2);
+function vinamek_custom_empty_price_html($price, $product) {
+  if (!vinamek_product_has_price($product)) {
+    return ''; // Trả về rỗng để không hiển thị gì
+  }
+  return $price;
+}
