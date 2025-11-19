@@ -773,6 +773,8 @@ img {
 	margin-right: 80px;
 	position: relative;
 	top: 25px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .main-header .header-upper .logo-box .logo {
@@ -9721,6 +9723,9 @@ body.visible-menu-bar .fullscreen-menu {
 		align-items: center;
 		gap: 6px;
 	}
+	.cart-box-mobile{
+		display: block !important;
+	}
 }
 
 .lang-img-container img {
@@ -10253,4 +10258,41 @@ h3 a.banner-phone-number:hover {
 }
 .contact-group-form-item p{
   width: calc(50% - 8px);
+}
+.logo-box .cart-box-mobile {
+	display: none !important;
+}
+
+
+
+
+   .main-header .header-upper .logo-box {
+	margin-right: 80px;
+	position: relative;
+	top: 25px;
+	display: flex;
+	justify-content: space-between;
+}
+ .logo-box .cart-box-mobile {
+	display: none !important;
+}
+.cart-box-mobile .number {
+	position: absolute;
+	right: 0px;
+	top: -15px;
+	color: #13b5ea;
+	/* padding:4px; */
+	font-size: 14px;
+}
+@media only screen and (max-width: 767px) {
+	.logo-box .cart-box-mobile{
+		display: block !important;
+    padding-right: 15px;
+	}
+  	.cart-box{
+		display: none !important;
+	}
+}
+.nav-toggler{
+  display: none !important;
 }

@@ -43,6 +43,14 @@
                   ?>
                 </a>
               </div>
+                <?php if (class_exists('WooCommerce')) : ?>
+                  <div class="cart-box-mobile">
+                    <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
+                      <span class="icon flaticon-shopping-cart-of-checkered-design"></span>
+                      <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                    </a>
+                  </div>
+                <?php endif; ?>
             </div>
 
             <!-- Option list -->
@@ -274,3 +282,36 @@
     <!-- End Main Header -->
 
     <main class="site-content">
+
+    <!-- <style>
+      .main-header .header-upper .logo-box {
+	margin-right: 80px;
+	position: relative;
+	top: 25px;
+	display: flex;
+	justify-content: space-between;
+}
+ .logo-box .cart-box-mobile {
+	display: none !important;
+}
+.cart-box-mobile .number {
+	position: absolute;
+	right: 0px;
+	top: -15px;
+	color: #13b5ea;
+	/* padding:4px; */
+	font-size: 14px;
+}
+@media only screen and (max-width: 767px) {
+	.logo-box .cart-box-mobile{
+		display: block !important;
+    padding-right: 15px;
+	}
+  	.cart-box{
+		display: none !important;
+	}
+}
+.nav-toggler{
+  display: none !important;
+}
+    </style> -->
