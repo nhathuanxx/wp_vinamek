@@ -26,7 +26,7 @@
           <div class="clearfix">
 
             <!-- Logo -->
-             <div class="pull-left logo-box desktop-logo-container">
+            <div class="pull-left logo-box desktop-logo-container">
               <div class="logo">
                 <a href="<?php echo esc_url(pll_home_url(pll_current_language())); ?>">
                   <?php
@@ -43,7 +43,7 @@
                   ?>
                 </a>
               </div>
-                <!-- <?php if (class_exists('WooCommerce')) : ?>
+              <!-- <?php if (class_exists('WooCommerce')) : ?>
                   <div class="cart-box-mobile">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                       <span style="font-size:20px" class="icon flaticon-shopping-cart-of-checkered-design"></span>
@@ -336,7 +336,7 @@
           /* padding:4px; */
           font-size: 14px;
         }
- 
+
 
         .nav-toggler {
           display: none !important;
@@ -351,9 +351,11 @@
           gap: 8px;
           align-items: center;
         }
-       .mobile-logo-container{
+
+        .mobile-logo-container {
           display: none !important;
         }
+
         @media only screen and (max-width: 767px) {
           .logo-box .cart-box-mobile {
             display: block !important;
@@ -371,11 +373,14 @@
           .main-menu .navbar-header {
             padding: 0px;
           }
-           .mobile-logo-container{
-          display: flex !important;
-        }
-        .desktop-logo-container{
-          display: none !important;
-        }
+
+          .mobile-logo-container {
+            display: flex !important;
+            padding-bottom: 25px;
+          }
+
+          .desktop-logo-container {
+            display: none !important;
+          }
         }
       </style>
