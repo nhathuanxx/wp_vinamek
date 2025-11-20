@@ -315,7 +315,7 @@
 
     <main class="site-content">
 
-      <!-- <style>
+      <style>
         .main-header .header-upper .logo-box {
           margin-right: 80px;
           position: relative;
@@ -378,4 +378,4 @@
           display: none !important;
         }
         }
-      </style> -->
+      </style>
