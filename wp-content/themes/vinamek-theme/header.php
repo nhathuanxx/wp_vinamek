@@ -10,7 +10,7 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.css" rel="stylesheet">
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.css" rel="stylesheet">
   <?php wp_head(); ?>
 </head>
 
@@ -26,7 +26,7 @@
           <div class="clearfix">
 
             <!-- Logo -->
-            <div class="pull-left logo-box">
+             <div class="pull-left logo-box desktop-logo-container">
               <div class="logo">
                 <a href="<?php echo esc_url(pll_home_url(pll_current_language())); ?>">
                   <?php
@@ -43,15 +43,16 @@
                   ?>
                 </a>
               </div>
-                <?php if (class_exists('WooCommerce')) : ?>
+                <!-- <?php if (class_exists('WooCommerce')) : ?>
                   <div class="cart-box-mobile">
                     <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
                       <span style="font-size:20px" class="icon flaticon-shopping-cart-of-checkered-design"></span>
                       <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                     </a>
                   </div>
-                <?php endif; ?>
+                <?php endif; ?> -->
             </div>
+
 
             <!-- Option list -->
             <div class="outer-box clearfix">
@@ -124,44 +125,75 @@
             <div class="nav-outer clearfix">
               <nav class="main-menu navbar-expand-md">
                 <div class="navbar-header">
-                   <?php
-                  $translations = pll_the_languages(array(
-                    'raw' => 1,
-                    'hide_if_no_translation' => 0, // hiển thị tất cả ngôn ngữ
-                  ));
-
-                  if (!empty($translations)) :
-                    $current_lang = pll_current_language('slug');
-                    $url_flags = get_template_directory_uri() . '/assets/images/vinamek/';
-                  ?>
-                    <div class="header-lang-content-mobile">
-
-                      <!-- Hiển thị cờ ngôn ngữ hiện tại -->
-                      <div class="lang-img-container">
+                  <div class="pull-left logo-box mobile-logo-container">
+                    <div class="logo">
+                      <a href="<?php echo esc_url(pll_home_url(pll_current_language())); ?>">
                         <?php
-                        if (isset($translations[$current_lang])) {
-                          echo '<img class="lang-img" src="' . esc_url($url_flags . 'flag-' . $current_lang . '.png') . '" alt="' . esc_attr($current_lang) . '">';
+                        // Lấy logo từ ACF Options Page
+                        $acf_logo = get_field('logo', 'option'); // 'option' nếu lưu trên Options Page
+
+                        if ($acf_logo) {
+                          // Image Array, chiều cao 60px
+                          echo '<img src="' . esc_url($acf_logo['url']) . '" alt="' . esc_attr($acf_logo['alt']) . '" class="site-logo">';
+                        } else {
+                          // Fallback: logo mặc định trong theme
+                          echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/vinamek/vinamek-logo-name1.png') . '" alt="' . esc_attr(get_bloginfo('name')) . '" class="site-logo">';
                         }
                         ?>
-                      </div>
-
-                      <select class="select-circle" onchange="if(this.value){window.location=this.value;}">
-                        <?php foreach ($translations as $lang => $translation) : ?>
-                          <option
-                            value="<?php echo esc_url($translation['url']); ?>"
-                            <?php selected($translation['current_lang'], true); ?>>
-                            <?php echo esc_html($translation['name']); ?>
-                          </option>
-                        <?php endforeach; ?>
-                      </select>
-
+                      </a>
                     </div>
-                  <?php endif; ?>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'vinamek'); ?>">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
+                    <div class="menu-mobile-right">
+                      <div> <?php if (class_exists('WooCommerce')) : ?>
+                          <div class="cart-box-mobile">
+                            <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
+                              <span style="font-size:20px" class="icon flaticon-shopping-cart-of-checkered-design"></span>
+                              <span class="number"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                            </a>
+                          </div>
+                        <?php endif; ?>
+                      </div>
+                      <?php
+                      $translations = pll_the_languages(array(
+                        'raw' => 1,
+                        'hide_if_no_translation' => 0,
+                      ));
+
+                      if (!empty($translations)) :
+                        $current_lang = pll_current_language('slug');
+                        $url_flags = get_template_directory_uri() . '/assets/images/vinamek/';
+                      ?>
+                        <div class="header-lang-content-mobile">
+                          <!-- Hiển thị cờ ngôn ngữ hiện tại -->
+                          <div class="lang-img-container">
+                            <?php
+                            if (isset($translations[$current_lang])) {
+                              echo '<img class="lang-img" src="' . esc_url($url_flags . 'flag-' . $current_lang . '.png') . '" alt="' . esc_attr($current_lang) . '">';
+                            }
+                            ?>
+                          </div>
+
+                          <select class="select-circle" onchange="if(this.value){window.location=this.value;}">
+                            <?php foreach ($translations as $lang => $translation) : ?>
+                              <option
+                                value="<?php echo esc_url($translation['url']); ?>"
+                                <?php selected($translation['current_lang'], true); ?>
+                                style="background-image: url('<?php echo esc_url($url_flags . 'flag-' . $lang . '.png'); ?>'); background-size: 20px; background-repeat: no-repeat; background-position: 5px center; padding-left: 30px;">
+                                <?php echo esc_html(strtoupper($lang)); ?>
+                              </option>
+                            <?php endforeach; ?>
+                          </select>
+
+                        </div>
+                      <?php endif; ?>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'vinamek'); ?>">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                    </div>
+
+                  </div>
+
                 </div>
 
                 <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
@@ -283,35 +315,67 @@
 
     <main class="site-content">
 
-    <!-- <style>
-      .main-header .header-upper .logo-box {
-	margin-right: 80px;
-	position: relative;
-	top: 25px;
-	display: flex;
-	justify-content: space-between;
-}
- .logo-box .cart-box-mobile {
-	display: none !important;
-}
-.cart-box-mobile .number {
-	position: absolute;
-	right: 0px;
-	top: -15px;
-	color: #13b5ea;
-	/* padding:4px; */
-	font-size: 14px;
-}
-@media only screen and (max-width: 767px) {
-	.logo-box .cart-box-mobile{
-		display: block !important;
-    padding-right: 15px;
-	}
-  	.cart-box{
-		display: none !important;
-	}
-}
-.nav-toggler{
-  display: none !important;
-}
-    </style> -->
+      <!-- <style>
+        .main-header .header-upper .logo-box {
+          margin-right: 80px;
+          position: relative;
+          top: 25px;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .logo-box .cart-box-mobile {
+          display: none !important;
+        }
+
+        .cart-box-mobile .number {
+          position: absolute;
+          right: unset;
+          top: -8px;
+          color: #13b5ea;
+          /* padding:4px; */
+          font-size: 14px;
+        }
+ 
+
+        .nav-toggler {
+          display: none !important;
+        }
+
+        .header-lang-content-mobile {
+          position: unset !important;
+        }
+
+        .menu-mobile-right {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+       .mobile-logo-container{
+          display: none !important;
+        }
+        @media only screen and (max-width: 767px) {
+          .logo-box .cart-box-mobile {
+            display: block !important;
+            padding-right: 15px;
+          }
+
+          .cart-box {
+            display: none !important;
+          }
+
+          .header-lang-content-mobile {
+            position: unset !important;
+          }
+
+          .main-menu .navbar-header {
+            padding: 0px;
+          }
+           .mobile-logo-container{
+          display: flex !important;
+        }
+        .desktop-logo-container{
+          display: none !important;
+        }
+        }
+      </style> -->

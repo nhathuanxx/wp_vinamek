@@ -1214,7 +1214,7 @@ img {
 	right: -15px;
 	top: -15px;
 	color: #13b5ea;
-	padding:4px;
+	padding: 4px;
 	font-size: 14px;
 }
 
@@ -1244,7 +1244,7 @@ img {
 }
 
 .sticky-header .main-menu .navigation>li>a {
-	color: #444444 ;
+	color: #444444;
 }
 
 .sticky-header .main-menu .navigation>li:hover>a,
@@ -9723,7 +9723,8 @@ body.visible-menu-bar .fullscreen-menu {
 		align-items: center;
 		gap: 6px;
 	}
-	.cart-box-mobile{
+
+	.cart-box-mobile {
 		display: block !important;
 	}
 }
@@ -10099,166 +10100,183 @@ h3 a.banner-phone-number:hover {
 	color: #0ea3d1 !important;
 	/* Màu đậm hơn khi hover */
 }
+
 /* CSS cho menu item active (bao gồm cả trang hiện tại và menu cha) */
-.nav-item.active > .nav-link,
-.nav-item.current-menu-item > .nav-link,
-.nav-item.current_page_item > .nav-link,
-.nav-item.current-menu-ancestor > .nav-link,
-.nav-item.current-menu-parent > .nav-link,
-.nav-item.current_page_parent > .nav-link,
-.nav-item.current_page_ancestor > .nav-link {
-  color: #13b5ea !important;
+.nav-item.active>.nav-link,
+.nav-item.current-menu-item>.nav-link,
+.nav-item.current_page_item>.nav-link,
+.nav-item.current-menu-ancestor>.nav-link,
+.nav-item.current-menu-parent>.nav-link,
+.nav-item.current_page_parent>.nav-link,
+.nav-item.current_page_ancestor>.nav-link {
+	color: #13b5ea !important;
 }
 
 /* CSS cho menu cha có dropdown khi active */
-.nav-item.active > .nav-link.dropdown-toggle,
-.nav-item.current-menu-ancestor > .nav-link.dropdown-toggle,
-.nav-item.current-menu-parent > .nav-link.dropdown-toggle,
-.nav-item.current_page_parent > .nav-link.dropdown-toggle,
-.nav-item.current_page_ancestor > .nav-link.dropdown-toggle {
-  color: #13b5ea !important;
+.nav-item.active>.nav-link.dropdown-toggle,
+.nav-item.current-menu-ancestor>.nav-link.dropdown-toggle,
+.nav-item.current-menu-parent>.nav-link.dropdown-toggle,
+.nav-item.current_page_parent>.nav-link.dropdown-toggle,
+.nav-item.current_page_ancestor>.nav-link.dropdown-toggle {
+	color: #13b5ea !important;
 }
 
 /* CSS cho dropdown menu active */
-.dropdown-menu .nav-item.active > .nav-link,
-.dropdown-menu .nav-item.current-menu-item > .nav-link,
-.dropdown-menu .nav-item.current-menu-ancestor > .nav-link {
-  color: #13b5ea !important;
+.dropdown-menu .nav-item.active>.nav-link,
+.dropdown-menu .nav-item.current-menu-item>.nav-link,
+.dropdown-menu .nav-item.current-menu-ancestor>.nav-link {
+	color: #13b5ea !important;
 }
 
 /* Hover effect cho menu active */
-.nav-item.active > .nav-link:hover,
-.nav-item.current-menu-item > .nav-link:hover,
-.nav-item.current-menu-ancestor > .nav-link:hover,
-.nav-item.current-menu-parent > .nav-link:hover,
-.nav-item.active > .nav-link.dropdown-toggle:hover,
-.nav-item.current-menu-ancestor > .nav-link.dropdown-toggle:hover {
-  color: #0ea3d1 !important;
+.nav-item.active>.nav-link:hover,
+.nav-item.current-menu-item>.nav-link:hover,
+.nav-item.current-menu-ancestor>.nav-link:hover,
+.nav-item.current-menu-parent>.nav-link:hover,
+.nav-item.active>.nav-link.dropdown-toggle:hover,
+.nav-item.current-menu-ancestor>.nav-link.dropdown-toggle:hover {
+	color: #0ea3d1 !important;
 }
 
 
 /* sửa giao diện form */
 /* Thu gọn khoảng cách form CF7 */
 .contact-form-wrapper p {
-    margin: 0 0 10px; /* giảm khoảng cách giữa các input */
+	margin: 0 0 10px;
+	/* giảm khoảng cách giữa các input */
 }
 
 /* Label */
 .contact-form-wrapper label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 500;
-    font-size: 14px; /* chữ nhỏ hơn */
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 500;
+	font-size: 14px;
+	/* chữ nhỏ hơn */
 }
 
 /* Input và textarea */
 .contact-form-wrapper input.wpcf7-form-control,
 .contact-form-wrapper textarea.wpcf7-form-control {
-    width: 100%;
-    padding: 6px 8px; /* input nhỏ hơn */
-    font-size: 14px;
-    box-sizing: border-box;
+	width: 100%;
+	padding: 6px 8px;
+	/* input nhỏ hơn */
+	font-size: 14px;
+	box-sizing: border-box;
 }
 
 /* Submit button */
 .contact-form-wrapper input.wpcf7-submit {
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #00bfff; /* màu button */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	padding: 8px 16px;
+	font-size: 14px;
+	background-color: #00bfff;
+	/* màu button */
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .contact-form-wrapper br {
-    display: none !important;
+	display: none !important;
 }
 
 /* Tạo 2 ô trên 1 hàng (desktop) */
 @media (min-width: 768px) {
-    .contact-form-wrapper .wpcf7-form-control-wrap.your-name,
-    .contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
-        width: calc(50% - 8px);
-        display: inline-block;
-        vertical-align: top;
-    }
-    .contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
-        margin-left: 16px; /* khoảng cách giữa 2 ô */
-    }
+
+	.contact-form-wrapper .wpcf7-form-control-wrap.your-name,
+	.contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
+		width: calc(50% - 8px);
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.contact-form-wrapper .wpcf7-form-control-wrap.your-phone {
+		margin-left: 16px;
+		/* khoảng cách giữa 2 ô */
+	}
 }
 
 .contact-form-wrapper input.wpcf7-form-control,
 .contact-form-wrapper textarea.wpcf7-form-control {
-    padding: 2px 10px !important;
-    margin-bottom: 4px !important;
+	padding: 2px 10px !important;
+	margin-bottom: 4px !important;
 }
 
 
 
 .quote-form-wrapper p {
-    margin: 0 0 10px; /* giảm khoảng cách giữa các input */
+	margin: 0 0 10px;
+	/* giảm khoảng cách giữa các input */
 }
 
 /* Label */
 .quote-form-wrapper label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 500;
-    font-size: 14px; /* chữ nhỏ hơn */
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 500;
+	font-size: 14px;
+	/* chữ nhỏ hơn */
 }
 
 /* Input và textarea */
 .quote-form-wrapper input.wpcf7-form-control,
 .quote-form-wrapper textarea.wpcf7-form-control {
-    width: 100%;
-    padding: 6px 8px; /* input nhỏ hơn */
-    font-size: 14px;
-    box-sizing: border-box;
+	width: 100%;
+	padding: 6px 8px;
+	/* input nhỏ hơn */
+	font-size: 14px;
+	box-sizing: border-box;
 }
 
 /* Submit button */
 .quote-form-wrapper input.wpcf7-submit {
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #00bfff; /* màu button */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	padding: 8px 16px;
+	font-size: 14px;
+	background-color: #00bfff;
+	/* màu button */
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .quote-form-wrapper br {
-    display: none !important;
+	display: none !important;
 }
 
 /* Tạo 2 ô trên 1 hàng (desktop) */
 @media (min-width: 768px) {
-    .quote-form-wrapper .wpcf7-form-control-wrap.your-name,
-    .quote-form-wrapper .wpcf7-form-control-wrap.your-phone {
-        width: calc(50% - 8px);
-        display: inline-block;
-        vertical-align: top;
-    }
-    .quote-form-wrapper .wpcf7-form-control-wrap.your-phone {
-        margin-left: 16px; /* khoảng cách giữa 2 ô */
-    }
+
+	.quote-form-wrapper .wpcf7-form-control-wrap.your-name,
+	.quote-form-wrapper .wpcf7-form-control-wrap.your-phone {
+		width: calc(50% - 8px);
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.quote-form-wrapper .wpcf7-form-control-wrap.your-phone {
+		margin-left: 16px;
+		/* khoảng cách giữa 2 ô */
+	}
 }
 
 .quote-form-wrapper input.wpcf7-form-control,
 .quote-form-wrapper textarea.wpcf7-form-control {
-    padding: 2px 10px !important;
-    margin-bottom: 4px !important;
+	padding: 2px 10px !important;
+	margin-bottom: 4px !important;
 }
 
-.contact-group-form-item{
+.contact-group-form-item {
 	display: flex;
 	align-items: center;
 	gap: 16px;
 }
-.contact-group-form-item p{
-  width: calc(50% - 8px);
+
+.contact-group-form-item p {
+	width: calc(50% - 8px);
 }
+
 .logo-box .cart-box-mobile {
 	display: none !important;
 }
@@ -10266,16 +10284,18 @@ h3 a.banner-phone-number:hover {
 
 
 
-   .main-header .header-upper .logo-box {
+.main-header .header-upper .logo-box {
 	margin-right: 80px;
 	position: relative;
 	top: 25px;
 	display: flex;
 	justify-content: space-between;
 }
- .logo-box .cart-box-mobile {
+
+.logo-box .cart-box-mobile {
 	display: none !important;
 }
+
 .cart-box-mobile .number {
 	position: absolute;
 	right: 0px;
@@ -10284,15 +10304,87 @@ h3 a.banner-phone-number:hover {
 	/* padding:4px; */
 	font-size: 14px;
 }
+
 @media only screen and (max-width: 780px) {
-	.logo-box .cart-box-mobile{
+	.logo-box .cart-box-mobile {
 		display: block !important;
-    padding-right: 15px;
+		padding-right: 15px;
 	}
-  	.cart-box{
+
+	.cart-box {
 		display: none !important;
 	}
 }
-.nav-toggler{
-  display: none !important;
+
+.nav-toggler {
+	display: none !important;
+}
+
+
+
+.main-header .header-upper .logo-box {
+	margin-right: 80px;
+	position: relative;
+	top: 25px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo-box .cart-box-mobile {
+	display: none !important;
+}
+
+.cart-box-mobile .number {
+	position: absolute;
+	right: unset;
+	top: -8px;
+	color: #13b5ea;
+	/* padding:4px; */
+	font-size: 14px;
+}
+
+
+.nav-toggler {
+	display: none !important;
+}
+
+.header-lang-content-mobile {
+	position: unset !important;
+}
+
+.menu-mobile-right {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.mobile-logo-container {
+	display: none !important;
+}
+
+@media only screen and (max-width: 767px) {
+	.logo-box .cart-box-mobile {
+		display: block !important;
+		padding-right: 15px;
+	}
+
+	.cart-box {
+		display: none !important;
+	}
+
+	.header-lang-content-mobile {
+		position: unset !important;
+	}
+
+	.main-menu .navbar-header {
+		padding: 0px;
+	}
+
+	.mobile-logo-container {
+		display: flex !important;
+	}
+
+	.desktop-logo-container {
+		display: none !important;
+	}
 }
